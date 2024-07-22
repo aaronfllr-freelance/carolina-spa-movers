@@ -3,6 +3,9 @@ import type { Config } from 'tailwindcss';
 export default {
     content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
     theme: {
+            screens: {
+                'lg': '1280px',
+            },
         extend: {
             // https://uicolors.app/create
             colors: {
