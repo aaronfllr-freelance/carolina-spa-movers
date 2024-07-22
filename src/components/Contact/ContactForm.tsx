@@ -17,17 +17,26 @@ const ContactForm: React.FC = () => {
         });
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        console.log('Form Data:', formData);
-        // Add form submission logic here
-    };
+    // const handleSubmit = (e: React.FormEvent) => {
+    //     e.preventDefault();
+    //     console.log('Form Data:', formData);
+    //     // Add form submission logic here
+    // };
 
+    const handleSubmit = async (event: any) => {
+        event.preventDefault();
+        const formData = new FormData(event.target) as any;
+        await fetch('/forms/__forms.html', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            body: new URLSearchParams(formData).toString()
+        });
+    }
+    // Success & error handling should come here
     return (
         <div className="max-w-lg mx-auto p-4">
             <h2 className="text-4xl text-primary-50 font-bold mb-4">Contact Us</h2>
-            {/* @ts-ignore */}
-            <form onSubmit={handleSubmit} className="space-y-4" netlify>
+            <form name="contact" onSubmit={handleSubmit} className="space-y-4" data-netlify>
                 <div className='flex-col'>
                     <div className="lg:flex">
                         <div className="lg:pr-1 lg:w-1/2">
