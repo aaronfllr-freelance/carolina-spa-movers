@@ -19,7 +19,7 @@ const Carousel: React.FC<CarouselProps> = ({ images = defaultImages }) => {
 
 
     return (
-        <div className="container overflow-hidden max-w-7xl inline-flex flex-nowrap justify-center">
+        <div className="overflow-hidden bg-inherit pt-6 max-w-6xl mx-auto flex justify-center flex-nowrap">
             <ul className="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-7xl animate-infinite-scroll">
                 {images.map((image, index) => (
                     <li key={index} className="w-1/3">
