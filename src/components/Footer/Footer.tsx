@@ -1,11 +1,13 @@
 import Link from 'next/link';
 
 import { Button } from '../Button';
+import Carousel from '../Carousel/Carousel';
 // import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 
 export const Footer = () => {
     return (
         <footer className='bg-primary-950 text-primary-50'>
+            <Carousel />
             <div className='container mx-auto px-4 py-8'>
                 <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
                     <div>
@@ -25,23 +27,28 @@ export const Footer = () => {
                         <h2 className='text-xl font-bold mb-4'>Quick Links</h2>
                         <ul className='space-y-2'>
                             <li>
-                                <Link href='/one' className='hover:underline'>
-                                    Link One
+                                <Link href='/' className='hover:underline'>
+                                    Home
                                 </Link>
                             </li>
                             <li>
-                                <Link href='/two' className='hover:underline'>
-                                    Link two
+                                <Link href='/about' className='hover:underline'>
+                                   About Us 
                                 </Link>
                             </li>
                             <li>
-                                <Link href='/three' className='hover:underline'>
-                                    Link Three
+                                <Link href='/services' className='hover:underline'>
+                                    Services
                                 </Link>
                             </li>
                             <li>
-                                <Link href='/four' className='hover:underline'>
-                                    Link Four
+                                <Link href='/gallery' className='hover:underline'>
+                                    Gallery
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href='/contact' className='hover:underline'>
+                                    Contact
                                 </Link>
                             </li>
                         </ul>

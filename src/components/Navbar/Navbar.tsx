@@ -11,10 +11,10 @@ import './navbar.css';
 
 const defaultLinks: NavLink[] = [
     { label: 'Home', href: '/' },
-    { label: 'One', href: '/one' },
-    { label: 'Two', href: '/two' },
-    { label: 'Three', href: '/three' },
-    { label: 'Four', href: '/four' },
+    { label: 'About Us', href: '/about' },
+    { label: 'Services', href: '/services' },
+    { label: 'Gallery', href: '/gallery' },
+    { label: 'Contact', href: '/contact' },
 ];
 
 
@@ -75,11 +75,11 @@ export const Navbar: FC<NavbarProps> = ({
                 className
             )}
         >
-            <div className='h-full container mx-auto px-4 py-4 flex justify-between items-center'>
+            <div className='h-full container mx-auto px-4 py-6 flex justify-between items-center'>
                 <div className='flex items-center flex-grow'>
-                    <div className='links hidden lg:flex space-x-4'>
+                    <div className='links hidden lg:flex font-medium space-x-5'>
                         {links.map(({ label, href }) => (
-                            <Link href={href} key={label}>
+                            <Link className='text-2xl' href={href} key={label}>
                                 {label}
                             </Link>
                         ))}

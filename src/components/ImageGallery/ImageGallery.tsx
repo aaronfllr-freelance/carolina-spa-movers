@@ -1,6 +1,6 @@
-import './imageGallary.css';
+import './imageGallery.css';
 
-export interface GallaryProps {
+export interface GalleryProps {
     images?: { src: string, alt: string, height: number, width: number }[];
 }
 
@@ -16,15 +16,16 @@ const defaultImages = [
     { src: "/images/nine.jpg", alt: "Nine", height: 400, width: 400 },
 ];
 
-export const ImageGallary: React.FC<GallaryProps> = ({ images = defaultImages }) => {
+export const ImageGallery: React.FC<GalleryProps> = ({ images = defaultImages }) => {
 
     return (
     <>
-        <div className='hidden lg:flex'>
+        <div className='hidden mb-24 lg:flex'>
             <div className="gallery flex items-center">
             {/* <img src="https://picsum.photos/id/1028/300/300" alt="a forest after an apocalypse" /> */}
                 {images.map((image, index) => (
                     <img
+                    key={index}
                     src={image.src}
                     alt={image.alt}
                     height={image.height}
@@ -37,4 +38,4 @@ export const ImageGallary: React.FC<GallaryProps> = ({ images = defaultImages })
     )
 }
 
-export default ImageGallary;
+export default ImageGallery;
