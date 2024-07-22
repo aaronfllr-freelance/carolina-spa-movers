@@ -26,7 +26,8 @@ const ContactForm: React.FC = () => {
     return (
         <div className="max-w-lg mx-auto p-4">
             <h2 className="text-4xl text-primary-50 font-bold mb-4">Contact Us</h2>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            {/* @ts-ignore */}
+            <form onSubmit={handleSubmit} className="space-y-4" netlify>
                 <div className='flex-col'>
                     <div className="lg:flex">
                         <div className="lg:pr-1 lg:w-1/2">
