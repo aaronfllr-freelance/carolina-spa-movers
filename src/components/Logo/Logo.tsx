@@ -14,7 +14,7 @@ export const Logo: FC<LogoProps> = ({ className, style }) => (
         width='200'
         height='100'
         priority
-        alt='Artisan Pastry by Valerie and Liz'
+        alt='Logo'
         className={cn`logo w-auto h-12 ${className}`}
         style={style}
     />
