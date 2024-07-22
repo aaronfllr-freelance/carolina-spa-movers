@@ -79,7 +79,7 @@ export const Navbar: FC<NavbarProps> = ({
                 <div className='flex items-center flex-grow'>
                     <div className='links hidden lg:flex font-medium space-x-5'>
                         {links.map(({ label, href }) => (
-                            <Link href={href} key={label}>
+                            <Link className='text-2xl' href={href} key={label}>
                                 {label}
                             </Link>
                         ))}

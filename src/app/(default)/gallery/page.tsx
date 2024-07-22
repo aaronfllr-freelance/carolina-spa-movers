@@ -26,7 +26,7 @@ export default function GalleryPage() {
     return (
         <>
             <div className="max-w-full">
-                <h2 className="mb-6 flex justify-center text-4xl font-extrabold text-gray-900 dark:text-primary-50">
+                <h2 className="mb-6 flex justify-center text-4xl font-extrabold text-primary-50 dark:text-primary-50">
                     Our Gallery
                 </h2>
                 

@@ -15,7 +15,7 @@
     /* https://codepen.io/sosuke/pen/Pjoqqp */
     filter: invert(1);
     transform-origin: top center;
-    transform: scale(1.75);
+    transform: scale(3.5);
     transform-origin: top;
     transition-property: filter, transform;
     transition-duration: 500ms;

@@ -11,7 +11,7 @@ export default function Home() {
         <SectionContent className='pt-48 flex-col items-center justify-center text-black'>
           <div className="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
             <div className="max-w-screen-md">
-                <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-primary-50">
+                <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-primary-50 dark:text-primary-50">
                   Hot Tub & Spa Relocation to Installation
                 </h2>
                 <p className="mb-8 font-normal text-gray-300 sm:text-xl dark:text-primary-300">
@@ -43,7 +43,7 @@ export default function Home() {
                 nulla pariatur. Excepteur sint occaecat cupidatat non proident,
                 sunt in culpa qui officia deserunt mollit anim id est laborum.
               </p>
-              <Button className='text-primary-900' href='/about'>Learn More</Button>
+              <Button className='text-primary-900' href='/about'>LEARN MORE &gt; &gt;</Button>
             </div>
           </div>
           <div className='flex p-4 mx-auto justify-center max-w-7xl flex-col md:flex-row'>
@@ -57,7 +57,7 @@ export default function Home() {
                 nulla pariatur. Excepteur sint occaecat cupidatat non proident,
                 sunt in culpa qui officia deserunt mollit anim id est laborum.
               </p>
-              <Button className='text-primary-900' href='/two'>two</Button>
+              <Button className='text-primary-900' href='/services'>LEARN MORE &gt; &gt;</Button>
             </div>
             <Image
               src='/images/two.jpg'

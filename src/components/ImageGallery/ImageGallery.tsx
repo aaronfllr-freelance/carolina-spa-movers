@@ -25,6 +25,7 @@ export const ImageGallery: React.FC<GalleryProps> = ({ images = defaultImages })
             {/* <img src="https://picsum.photos/id/1028/300/300" alt="a forest after an apocalypse" /> */}
                 {images.map((image, index) => (
                     <img
+                    key={index}
                     src={image.src}
                     alt={image.alt}
                     height={image.height}
