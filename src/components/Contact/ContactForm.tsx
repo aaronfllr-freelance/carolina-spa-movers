@@ -34,7 +34,7 @@ const ContactForm: React.FC = () => {
         event.preventDefault();
         const formData = new FormData(event.target as HTMLFormElement);
         // const submissionData = { ...formData, phone: formattedPhone };
-        await fetch('/forms/__forms.html', {
+        await fetch('/__forms.html', {
             method: 'POST',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             body: new URLSearchParams(formData as any).toString()
