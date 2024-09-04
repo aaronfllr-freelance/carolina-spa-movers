@@ -48,7 +48,7 @@ const ContactForm: React.FC = () => {
                 <div className='flex-col'>
                     <div className="lg:flex">
                         <div className="lg:pr-1 lg:w-1/2">
-                            <label htmlFor="name" className="block text-sm font-medium text-primary-300">
+                            <label htmlFor="name" className="block text-sm font-medium text-primary-50">
                                 Name
                             </label>
                             <input
@@ -57,12 +57,12 @@ const ContactForm: React.FC = () => {
                                 id="name"
                                 value={formData.name}
                                 onChange={handleChange}
-                                className="mt-1 block w-full border border-gray-300 shadow-sm p-2 sm:text-sm"
+                                className="mt-1 block w-full border border-gray-50 shadow-sm p-2 sm:text-sm"
                                 required
                             />
                         </div>
                         <div className="lg:pl-1 lg:w-1/2">
-                            <label htmlFor="phone" className="block text-sm font-medium text-primary-300">
+                            <label htmlFor="phone" className="block text-sm font-medium text-primary-50">
                                 Phone Number
                             </label>
                             <input
@@ -72,14 +72,14 @@ const ContactForm: React.FC = () => {
                                 id="phone"
                                 value={formattedPhone}
                                 onChange={handleChange}
-                                className="mt-1 block w-full border border-gray-300 shadow-sm p-2 sm:text-sm"
+                                className="mt-1 block w-full border border-primary-50 shadow-sm p-2 sm:text-sm"
                                 required
                             />
                         </div>
                     </div>
                 </div>
                 <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-primary-300">
+                    <label htmlFor="email" className="block text-sm font-medium text-primary-50">
                         Email Address
                     </label>
                     <input
@@ -88,12 +88,12 @@ const ContactForm: React.FC = () => {
                         id="email"
                         value={formData.email}
                         onChange={handleChange}
-                        className="mt-1 block w-full border border-primary-300 shadow-sm p-2 sm:text-sm"
+                        className="mt-1 block w-full border border-primary-50 shadow-sm p-2 sm:text-sm"
                         required
                     />
                 </div>
                 <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-primary-300">
+                    <label htmlFor="message" className="block text-sm font-medium text-primary-50">
                         How can we help?
                     </label>
                     <textarea
@@ -101,7 +101,7 @@ const ContactForm: React.FC = () => {
                         id="message"
                         value={formData.message}
                         onChange={handleChange}
-                        className="mt-1 block w-full border border-gray-300 shadow-sm p-2 sm:text-sm"
+                        className="mt-1 block w-full border border-gray-50 shadow-sm p-2 sm:text-sm"
                         rows={6} // Add this line to set the number of rows to 4
                         required
                     ></textarea>

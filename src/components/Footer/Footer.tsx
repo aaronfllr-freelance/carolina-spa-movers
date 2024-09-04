@@ -6,17 +6,16 @@ import Carousel from '../Carousel/Carousel';
 
 export const Footer = () => {
     return (
-        <footer className='bg-primary-950 text-primary-50'>
+        <footer className='bg-primary-700 text-primary-50'>
             <Carousel />
             <div className='container mx-auto px-4 py-8'>
                 <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
                     <div>
                         <h2 className='text-xl font-bold mb-4'>About Us</h2>
                         <p>
-                            D rerum-augue, longas-sessione plenus eros te Esse Partem insultus
-                            opponere protunc, eodem, eos propinat. Ea sed quis-felicem, innovare,
-                            nec tertium nonummy constituere. Quis ex ut minim modeste&quod; methodo
-                            hac metus hac formidine, scientiam merito.
+                            We are Hot Tub and Spa Movers of the Carolinas. We know moving, and have the tools, equipment, and the vehicles to do the job right and on time. High decks, recessed tubs, patios, enclosed rooms, disposals, all in a day’s work.
+                            From any size, shape, make or model we have the tools to do the job. These products are virtually impossible for your average moving company to transport. We take great care to ensure your cargo arrives safely at its destination.
+                            We now offer long distance transportation, whether the product needs to go 2 miles or 200 make life easy with us, handling your move.
                         </p>
                     </div>
 

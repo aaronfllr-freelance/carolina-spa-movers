@@ -7,12 +7,12 @@ export interface CarouselProps {
 }
 
 const defaultImages = [
-    { src: "/images/one.jpg", alt: "One", height: 400, width: 400 },
-    { src: "/images/two.jpg", alt: "Two", height: 400, width: 400 },
-    { src: "/images/three.jpg", alt: "Three", height: 400, width: 400 },
-    { src: "/images/four.jpg", alt: "Four", height: 400, width: 400 },
-    { src: "/images/five.jpg", alt: "Five", height: 400, width: 400 },
-    { src: "/images/six.jpg", alt: "Six", height: 400, width: 400 },
+    { src: "/assets/images/brands/spabrand1.png", alt: "One", height: 200, width: 200 },
+    { src: "/assets/images/brands/spabrand2.svg", alt: "Two", height: 200, width: 200 },
+    { src: "/assets/images/brands/spabrand3.png", alt: "Three", height: 200, width: 200 },
+    { src: "/assets/images/brands/spabrand4.png", alt: "Three", height: 200, width: 200 },
+    { src: "/assets/images/brands/spabrand5.png", alt: "Three", height: 200, width: 200 },
+
 ];
 
 const Carousel: React.FC<CarouselProps> = ({ images = defaultImages }) => {

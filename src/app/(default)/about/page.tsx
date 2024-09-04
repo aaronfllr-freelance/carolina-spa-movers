@@ -9,27 +9,27 @@ export default function AboutPage() {
           <h2 className="mb-4 text-4xl font-extrabold text-primary-50 dark:text-primary-50">
             About Us
           </h2>
-          <p className="my-6 font-normal text-primary-300 sm:text-xl dark:text-primary-300">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit
-            amet tempus quam, non auctor odio. Vivamus vel quam quis dui
-            fermentum suscipit. Maecenas metus tellus, dictum vitae blandit id,
-            luctus sed leo. Curabitur laoreet eros felis, a iaculis lectus
-            pharetra non. Sed nisi nibh, pulvinar at eleifend sit amet, faucibus
-            a ligula. Nulla facilisi. Sed nec luctus diam, quis tristique
-            libero. Nulla blandit tempus aliquet. Ut molestie aliquet mattis.
-            Morbi ac tincidunt erat. Suspendisse volutpat varius posuere. Aenean
-            nunc urna, pulvinar nec eleifend sed, convallis et libero. Phasellus
-            mi eros, tempor non tristique ut, tincidunt porttitor ipsum.
-            Vestibulum a vestibulum lacus. Praesent convallis sodales enim et
-            malesuada. Pellentesque habitant morbi tristique senectus et netus
-            et malesuada fames ac turpis egestas. Quisque placerat vitae nisi
-            sed cursus. Nullam sollicitudin est euismod maximus tincidunt. Nunc
-            nibh eros, suscipit id neque ut, commodo euismod urna. Curabitur
-            euismod ut sapien non venenatis. Maecenas imperdiet lorem quis
-            cursus accumsan. Phasellus mattis lorem vel tellus posuere, gravida
-            tincidunt nisi viverra. Aliquam interdum aliquet venenatis. Sed in
-            mollis neque.
+          <p className="my-6 font-normal text-primary-50 sm:text-xl dark:text-primary-50">
+            <b>We Specialize in Local & Long distance Spa & Hot Tub Moves</b> 
           </p>
+          <p className="my-6 font-normal text-primary-50">
+            We provide services from moving to maintenance and everything in between. We are everything hot tubs! 
+            Reach out today for a free estimate.
+          </p>
+          <ul className="my-6 font-normal text-primary-50 sm:text-xl dark:text-primary-50">
+            <li>Transport & Move</li>
+            <li>Disposal</li>
+            <li>Consignment & Sale</li>
+            <li>Repos</li>
+            <li>Inspections</li>
+            <li>Cranes For Limited Access Moves</li>
+            <li>Service & Repair</li>
+            <li>Spa Products</li>
+            <li>Deck Construction Referrals</li>
+            <li>Electrical Referrals</li>
+            <li>Drop Shipping</li>
+            <li>Troubleshooting Advice</li>
+          </ul>
         </div>
         <div className="flex-1 mx-auto">
           <iframe
