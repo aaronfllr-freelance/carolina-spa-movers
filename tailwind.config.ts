@@ -7,19 +7,19 @@ export default {
             // https://uicolors.app/create
             colors: {
                 primary: {
-                    DEFAULT: '#aaaaaa',
-                    '50': '#fafafa',
-                    '100': '#f5f5f5',
-                    '200': '#eeeeee',
-                    '300': '#e0e0e0',
-                    '400': '#bdbdbd',
-                    '500': '#aaaaaa',
-                    '600': '#8d8d8d',
-                    '700': '#616161',
-                    '800': '#424242',
-                    '900': '#212121',
-                    '950': '#121212'
-                },
+                    DEFAULT: '#a3c7e5', // Default relaxing blue
+                    '50': '#f0f7fc', // Lightest blue
+                    '100': '#e2effa',
+                    '200': '#baddf4',
+                    '300': '#91cbef',
+                    '400': '#69b9ea',
+                    '500': '#40a6e4', // Default relaxing blue
+                    '600': '#2a86b6',
+                    '700': '#216a8f',
+                    '800': '#184d68',
+                    '900': '#0e3142', // Darkest blue
+                    '950': '#081b24' // Near black blue
+                    },
                 secondary: { 
                     DEFAULT: '#e2a55f',
                     '50': '#fff8f0',

@@ -1,8 +1,11 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # devenv
-.devenv/*
-
+devenv.nix
+devenv.flake.lock
+devenv.yaml
+.envrc
+.devenv
 
 # dependencies
 /node_modules
@@ -38,3 +41,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.devenv.flake.nix
+.devenv.flake.nix
