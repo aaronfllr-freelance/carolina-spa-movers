@@ -6,6 +6,11 @@ export default {
         extend: {
             // https://uicolors.app/create
             colors: {
+                text: {
+                    DEFAULT: '#333333', // Default black
+                    'dark': '#0e3142', // Dark black
+                    'light': '#0e3142'
+                },
                 primary: {
                     DEFAULT: '#a3c7e5', // Default relaxing blue
                     '50': '#f0f7fc', // Lightest blue
