@@ -8,12 +8,12 @@ export default function DefaultLayout({ children }: PropsWithChildren) {
     return (
         <>
             <Navbar enableScroll/>
-            <Section className='min-h-screen'>
-                <SectionBackground color='gray' />
-                <SectionContent className='pt-72 flex-col items-center justify-center text-black'>
-                    {children}
-                </SectionContent>
-            </Section>
+                <Section className='min-h-screen'>
+                <SectionBackground video='/assets/videos/causticsbackground.mp4' />
+                    <SectionContent className='pt-48 flex-col items-center justify-center text-black'> 
+                        {children}
+                    </SectionContent>
+                </Section>
             <Footer />
         </>
     );

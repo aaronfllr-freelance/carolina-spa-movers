@@ -86,7 +86,7 @@ export const Navbar: FC<NavbarProps> = ({
         <div className="flex w-full mr-6 justify-end flex-grow">
           <div className="links hidden lg:flex font-medium space-x-10">
             {links.map(({ label, href }) => (
-              <Link className="text-2xl" href={href} key={label}>
+              <Link className="text-2xl font-extrabold" href={href} key={label}>
                 {label}
               </Link>
             ))}
@@ -125,16 +125,6 @@ export const Navbar: FC<NavbarProps> = ({
           <nav className="space-y-4">
             <div className="links flex flex-col items-end gap-4 space">
               {children}
-              {/* {buttons.map(({ label, ...buttonProps }) => (
-                                <Button
-                                    {...buttonProps}
-                                    key={label}
-                                    onClick={() => setIsMenuOpen(false)}
-                                    tabIndex={isMenuOpen ? 0 : -1}
-                                >
-                                    {label}
-                                </Button>
-                            ))} */}
               {links.map(({ label, href }) => (
                 <Button
                   href={href}
