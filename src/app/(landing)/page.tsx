@@ -10,7 +10,7 @@ export default function Home() {
       <Section className='min-h-screen'>
         <SectionBackground video='/assets/videos/causticsbackground.mp4' />
         <SectionContent className='pt-48 flex-col items-center justify-center text-black'>
-          <Card className='p-5 bg-primary-50 shadow-lg shadow-primary-900'>
+          <Card className='p-5 my-6 bg-primary-50 shadow-lg shadow-primary-900'>
             <div className="py-8 grid grid-cols-1 md:grid-cols-2 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
               <div className="max-w-screen-md">
                 <h1 className="mb-4 text-6xl tracking-tight font-extrabold text-text-light dark:text-text-dark">
@@ -20,7 +20,7 @@ export default function Home() {
                   Serving the Carolinas and beyond, we specialize in moving hot tubs and spas.
                 </h2>
               </div>
-              <Image className='mb-4'src={'/assets/northsouthcarolina.svg'} width={400} height={400} alt='North Carolina and South Carolina'/>
+              <Image className='mb-4 mx-auto'src={'/assets/northsouthcarolina.svg'} width={400} height={400} alt='North Carolina and South Carolina'/>
             </div>
             <div className="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
               <div className="max-w-screen-md">
