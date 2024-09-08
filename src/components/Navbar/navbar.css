@@ -32,7 +32,7 @@
 }
 
 .transparent .links a {
-    @apply text-primary-100;
+    @apply text-primary-900;
 }
 
 .transparent .links a:hover {
