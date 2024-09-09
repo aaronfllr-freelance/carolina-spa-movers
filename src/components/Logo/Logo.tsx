@@ -1,7 +1,9 @@
 import Image from 'next/image';
 import { CSSProperties, FC } from 'react';
-import icon from '/public/assets/icon.svg';
+import icon from '/public/assets/iconNCSC.svg';
 import { cn } from '@/lib/utils';
+
+import "./logo.css";
 
 export interface LogoProps {
     className?: string;
@@ -15,7 +17,7 @@ export const Logo: FC<LogoProps> = ({ className, style }) => (
         height='100'
         priority
         alt='Logo'
-        className={cn`logo w-auto h-12 ${className}`}
+        className={cn`logo svg-logo w-auto h-12 ${className}`}
         style={style}
     />
 );

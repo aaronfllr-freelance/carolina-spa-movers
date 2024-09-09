@@ -7,7 +7,7 @@ import { Card } from '@/components/ui/card';
 export default function Home() {
     return (
     <>
-          <Card className='p-5 my-6 bg-primary-50 shadow-lg shadow-primary-900'>
+          <Card className='p-5 my-6 bg-primary-200 shadow-lg shadow-primary-900'>
             <div className="py-8 grid grid-cols-1 md:grid-cols-2 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
               <div className="max-w-screen-md">
                 <h1 className="mb-4 text-6xl tracking-tight font-extrabold text-text-light dark:text-text-dark">

@@ -13,11 +13,10 @@
 
 .navbar.transparent img.logo {
     /* https://codepen.io/sosuke/pen/Pjoqqp */
-    filter: invert(1);
     transform-origin: top center;
-    transform: scale(3.5);
+    transform: scale(4);
     transform-origin: top;
-    transition-property: filter, transform;
+    transition-property:  transform;
     transition-duration: 500ms;
 }
 
@@ -59,7 +58,7 @@
         opacity 0.3s ease;
 }
 .navbar.transparent .hamburger .bar {
-    @apply bg-white;
+    @apply bg-primary-900;
 }
 
 .navbar .hamburger.open .bar:nth-child(1) {

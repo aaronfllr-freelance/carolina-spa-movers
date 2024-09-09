@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 export default function AboutPage() {
   return (
     <>
-      <Card className="p-5 my-6 bg-primary-50 shadow-lg shadow-primary-900">
+      <Card className="p-5 my-6 bg-primary-200 shadow-lg shadow-primary-900">
         <div className="flex flex-col md:flex-row items-center md:gap-8">
           <div className="max-w-3xl flex-1 lg:mr-6">
             <h2 className="mb-4 text-4xl font-extrabold text-primary-50 dark:text-primary-900">
