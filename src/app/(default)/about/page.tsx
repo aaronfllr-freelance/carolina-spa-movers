@@ -1,5 +1,3 @@
-import Carousel from "@/components/Carousel/Carousel";
-import { ImageGallery } from "@/components/ImageGallery";
 import { Card } from "@/components/ui/card";
 
 export default function AboutPage() {
@@ -18,7 +16,7 @@ export default function AboutPage() {
               We provide services from moving to maintenance and everything in between. We are everything hot tubs! 
               Reach out today for a free estimate.
             </p>
-            <ul className="my-6 font-normal text-primary-900 sm:text-xl dark:text-primary-900">
+            <ul className="my-6 list-image-[url(/assets/hot-tub.svg)] list-outside ml-6 leading-[3] mt-2 text-primary-900 sm:text-xl dark:text-primary-900">
               <li>Transport & Move</li>
               <li>Disposal</li>
               <li>Consignment & Sale</li>
