@@ -68,7 +68,7 @@ export const Navbar: FC<NavbarProps> = ({
   return (
     <header
       className={cn(
-        "navbar bg-primary-50 shadow-md",
+        "navbar bg-primary-200 shadow-md",
         isSolid ? "solid" : "transparent",
         isScrolled ? "scrolled" : "not-scrolled",
         isMenuOpen ? "menu-open" : "menu-closed",
@@ -113,7 +113,7 @@ export const Navbar: FC<NavbarProps> = ({
 
       <div
         className={cn(
-          "menu-overlay -z-10 lg:hidden fixed inset-0 bg-primary-50 bg-opacity-90 flex transition-[opacity,transform] duration-500 ease-in-out overflow-hidden opacity-0 -translate-y-full"
+          "menu-overlay -z-10 lg:hidden fixed inset-0 bg-primary-200 bg-opacity-90 flex transition-[opacity,transform] duration-500 ease-in-out overflow-hidden opacity-0 -translate-y-full"
         )}
         style={{
           transform: isMenuOpen ? "translateY(0)" : "translateY(-100%)",

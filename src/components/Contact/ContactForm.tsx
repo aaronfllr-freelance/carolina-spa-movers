@@ -44,7 +44,7 @@ const ContactForm: React.FC = () => {
     }
 
     return (
-        <Card className="p-5 my-6 bg-primary-50 shadow-lg shadow-primary-900">
+        <Card className="p-5 my-6 bg-primary-200 shadow-lg shadow-primary-900">
             <div className="max-w-lg mx-auto p-4">
                 <h2 className="text-4xl text-primary-900 font-bold mb-4">Contact Us</h2>
                 <form name="contact" onSubmit={handleSubmit} className="space-y-4" data-netlify>
