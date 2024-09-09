@@ -6,7 +6,7 @@ import Carousel from '../Carousel/Carousel';
 
 export const Footer = () => {
     return (
-        <footer className='bg-primary-700 text-primary-50'>
+        <footer className='relative z-10 bg-primary-700 text-primary-50'>
             <Carousel />
             <div className='container mx-auto px-4 py-8'>
                 <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>

@@ -7,9 +7,6 @@ import { Card } from '@/components/ui/card';
 export default function Home() {
     return (
     <>
-      <Section className='min-h-screen'>
-        <SectionBackground video='/assets/videos/causticsbackground.mp4' />
-        <SectionContent className='pt-48 flex-col items-center justify-center text-black'>
           <Card className='p-5 my-6 bg-primary-50 shadow-lg shadow-primary-900'>
             <div className="py-8 grid grid-cols-1 md:grid-cols-2 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
               <div className="max-w-screen-md">
@@ -38,10 +35,8 @@ export default function Home() {
                     </Button>
                   </div>
               </div>
-            {/* </Card> */}
           </div>
           <div className="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
-            {/* <Card className='p-5 bg-primary-50 shadow-md shadow-primary-900'> */}
               <div className='flex p-4 max-w-7xl mx-auto justify-center flex-col md:flex-row '>
                 <Image
                   src='/assets/images/movingspas/spamoving1.jpg'
@@ -59,10 +54,8 @@ export default function Home() {
                   <Button className='text-text-dark' href='/about'>LEARN MORE &gt; &gt;</Button>
                 </div>
               </div>
-            {/* </Card> */}
           </div>
           <div className="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
-            {/* <Card className='p-5 bg-primary-50 shadow-lg shadow-primary-900'> */}
               <div className='flex p-4 mx-auto justify-center max-w-7xl flex-col md:flex-row'>
                 <div className='p-4'>
                   <h1 className='text-2xl mb-6 text-text-light font-bold'>Our Services</h1>
@@ -79,11 +72,8 @@ export default function Home() {
                   height='400'
                 />
               </div>
-            {/* </Card> */}
           </div>
           </Card>
-        </SectionContent>
-      </Section>
     </>
     );
 }

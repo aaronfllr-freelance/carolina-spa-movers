@@ -6,8 +6,8 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-    title: 'Title',
-    description: 'Description',
+    title: 'Carolina Spa Movers',
+    description: 'Serving the Carolinas and beyond, we specialize in moving hot tubs and spas.',
 };
 
 export default function RootLayout({ children }: PropsWithChildren<object>) {

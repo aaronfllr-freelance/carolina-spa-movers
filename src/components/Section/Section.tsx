@@ -19,7 +19,7 @@ export const SectionBackground: FC<SectionBackgroundProps> = ({
     style,
     ...videoProps
 }) => {
-    const baseClassNames = 'section__background absolute top-0 left-0 w-full h-full';
+    const baseClassNames = 'section__background fixed top-0 left-0 w-full h-full';
 
     switch (true) {
         case !!video:
