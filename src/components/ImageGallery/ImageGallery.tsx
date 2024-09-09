@@ -31,6 +31,17 @@ export const ImageGallery: React.FC<GalleryProps> = ({ images = defaultImages })
                 ))}
             </div>
         </div>
+           <div className="lg:hidden flex flex-col space-y-4 items-center">
+                {images.map((image, index) => (
+                    <img
+                    key={index}
+                    src={image.src}
+                    alt={image.alt}
+                    height={image.height}
+                    width={image.width}
+                    />
+                ))}
+            </div>
     </>
     )
 }
