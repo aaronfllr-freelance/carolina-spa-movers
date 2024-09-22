@@ -3,6 +3,8 @@ import usePhoneNumberFormatter from '@/hooks/telFormatter';
 import React, { useState, useEffect } from 'react';
 import { Card } from '../ui/card';
 import { Button } from '../Button';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const ContactForm: React.FC = () => {
     const [formData, setFormData] = useState({
@@ -11,6 +13,7 @@ const ContactForm: React.FC = () => {
         email: '',
         message: ''
     });
+    const [error, setError] = useState<string | null>(null);
 
     const { value: formattedPhone, onChange: handlePhoneChange } = usePhoneNumberFormatter(formData.phone);
 
@@ -32,22 +35,35 @@ const ContactForm: React.FC = () => {
         }
     };
 
-    const handleSubmit = async (event: React.FormEvent) => {
-        event.preventDefault();
-        const formData = new FormData(event.target as HTMLFormElement);
-        // const submissionData = { ...formData, phone: formattedPhone };
-        await fetch('/__forms.html', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            body: new URLSearchParams(formData as any).toString()
-        });
-    }
+    const notifySentForm: React.FormEventHandler<HTMLFormElement> = async (e) => {
+        setError(null);
+        console.log(error);
+    
+        e.preventDefault();
+        const payload = {
+          name: formData.name,
+          email: formData.email,
+          phone: formattedPhone,
+          message: formData.message,
+        }
+    
+        try {
+          const response = await axios.post('/.netlify/functions/send-email', payload);
+          console.log(response);
+    
+          toast.success("Message sent successfully");
+        } catch (error) {
+          console.log(error);
+          setError("An Error occured, try again later");
+        }
+      };
+
 
     return (
         <Card className="p-5 my-6 bg-primary-200 shadow-lg shadow-primary-900">
             <div className="max-w-lg mx-auto p-4">
                 <h2 className="text-4xl text-primary-900 font-bold mb-4">Contact Us</h2>
-                <form name="contact" onSubmit={handleSubmit} className="space-y-4" data-netlify>
+                <form name="contact" onSubmit={notifySentForm} className="space-y-4" data-netlify>
                     <div className='flex-col'>
                         <div className="lg:flex">
                             <div className="lg:pr-1 lg:w-1/2">
