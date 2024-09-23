@@ -5,11 +5,9 @@ import { Navbar } from '@/components/Navbar';
 import { Section, SectionBackground, SectionContent, SectionOverlay } from '@/components/Section';
 import Carousel from '@/components/Carousel/Carousel';
 import { Provider } from 'react-redux';
-import store from '../store';
 export default function DefaultLayout({ children }: PropsWithChildren) {
     return (
         <>
-            <Provider store={store}>
                 <Navbar enableScroll/>
                     <Section className='min-h-screen'>
                     <SectionBackground video='/assets/videos/causticsbackground.mp4' />
@@ -18,7 +16,6 @@ export default function DefaultLayout({ children }: PropsWithChildren) {
                         </SectionContent>
                     </Section>
                 <Footer />
-            </Provider>
         </>
     );
 }
