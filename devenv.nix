@@ -6,7 +6,8 @@
 
   # https://devenv.sh/packages/
   packages = with pkgs; [
-    nodePackages_latest.vercel
+    netlify-cli
+    deno
   ];
 
   # https://devenv.sh/scripts/

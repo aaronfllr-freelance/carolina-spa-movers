@@ -43,3 +43,7 @@ yarn-error.log*
 next-env.d.ts
 .devenv.flake.nix
 .devenv.flake.nix
+.env
+
+# Local Netlify folder
+.netlify
