@@ -83,16 +83,16 @@ export const Footer = () => {
                 <div className='border-t border-primary-900 mt-8 pt-4'>
                     <div className='flex flex-col md:flex-row justify-between items-center'>
                         <p>
-                            &copy; {new Date().getFullYear()} Your Company. All rights reserved.
+                            &copy; {new Date().getFullYear()} Carolina Spa Movers. All rights reserved.
                         </p>
-                        <div className='flex space-x-4'>
+                        {/* <div className='flex space-x-4'>
                             <Link href='/privacy' className='hover:underline'>
                                 Privacy Policy
                             </Link>
                             <Link href='/terms' className='hover:underline'>
                                 Terms of Service
                             </Link>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
