@@ -17,7 +17,9 @@ const RemovalToDisposal: React.FC = () => {
         currentCity: '',
         currentState: '',
         currentZip: '',
-        pathClearance: true,
+        brand: '',
+        dimensions: '',
+        pathClearance: '',
         placementSpot: '',
         steps: '',
         access: '',
@@ -61,6 +63,8 @@ const RemovalToDisposal: React.FC = () => {
             currentCity: formData.currentCity,
             currentState: formData.currentState,
             currentZip: formData.currentZip,
+            brand: formData.brand,
+            dimensions: formData.dimensions,
             pathClearance: formData.pathClearance,  
             placementSpot: formData.placementSpot,
             steps: formData.steps,
@@ -207,9 +211,71 @@ const RemovalToDisposal: React.FC = () => {
                             </div>
                         </div>
                     </div>
+                    {/* Radio Button */}
+              
+                    <div className='flex-col text-sm font-medium text-primary-900'>
+                        <div className="lg:flex">
+                            <div className="lg:pr-1 lg:w-1/2">
+                                <label className='lg:pr-1 lg:w-1/2'>Has path been measured for Clearance?</label>
+                                <label className='block'>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="pathClearance"
+                                        value="Yes"
+                                        checked={formData.pathClearance === 'Yes'}
+                                        onChange={handleChange}
+                                    />
+                                    Yes       
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="pathClearance"
+                                        value="No"
+                                        checked={formData.pathClearance === 'No'}
+                                        onChange={handleChange}
+                                    />
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
 
-                    {/* Destination Address and City (2 columns) */}
-                    
+                    {/* Spa Details*/}
+                    <div className='flex-col'>
+                        <div className="lg:flex">
+                            <div className="lg:pr-1 lg:w-1/2">
+                                <label htmlFor="brand" className="block text-sm font-medium text-primary-900">
+                                    Spa Brand
+                                </label>
+                                <input
+                                    type="text"
+                                    name="brand"
+                                    id="brand"
+                                    value={formData.brand}
+                                    onChange={handleChange}
+                                    className="mt-1 rounded-md block w-full border border-gray-900 shadow-md p-2 sm:text-sm"
+                                    required
+                                />
+                            </div>
+                            <div className="lg:pl-1 lg:w-1/2">
+                                <label htmlFor="dimensions" className="block text-sm font-medium text-primary-900">
+                                    Spa Dimensions
+                                </label>
+                                <input
+                                    type="text"
+                                    name="dimensions"
+                                    id="dimensions"
+                                    value={formData.dimensions}
+                                    onChange={handleChange}
+                                    className="mt-1 rounded-md block w-full border border-primary-900 shadow-md p-2 sm:text-sm"
+                                    required
+                                />
+                            </div>
+                        </div>
+                    </div> 
 
                     {/* Message Input (single column) */}
                     <div>
