@@ -17,6 +17,15 @@ interface EmailRequest {
     destinationCity?: string;
     destinationState?: string;
     destinationZip?: string;
+    brand?: string;
+    dimensions?: string;
+    pathClearance?: string;
+    placementSpot?: string;
+    steps?: string;
+    access?: string;
+    propertySlope?: string;
+    slope?: string;
+    obstacles?: string;
 }
 
 export const handler: Handler = async (event) => {
@@ -33,6 +42,15 @@ export const handler: Handler = async (event) => {
             destinationCity,
             destinationState,
             destinationZip,
+            brand,
+            dimensions,
+            pathClearance,
+            placementSpot,
+            steps,
+            access,
+            propertySlope,
+            slope,
+            obstacles
         }: EmailRequest = JSON.parse(event.body as string);
  
         const emailBody = `
@@ -42,6 +60,9 @@ export const handler: Handler = async (event) => {
         Email: ${email}
         Phone: ${phone}
 
+        Brand: ${brand}
+        Dimensions: ${dimensions}
+        Path Clearance: ${pathClearance}
         Current Address of Hot Tub: ${currentAddress}, ${currentCity}, ${currentState}, ${currentZip}
         
         Where the Hot Tub is Going: ${destinationAddress}, ${destinationCity}, ${destinationState}, ${destinationZip}
