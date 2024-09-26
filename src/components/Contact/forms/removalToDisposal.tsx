@@ -217,7 +217,7 @@ const RemovalToDisposal: React.FC = () => {
                         <div className="lg:flex">
                             <div className="lg:pr-1 lg:w-1/2">
                                 <label className='lg:pr-1 lg:w-1/2'>Has path been measured for Clearance?</label>
-                                <label className='block'>
+                                <label className='block gap-4 mt-2'>
                                     <input
                                         type="radio"
                                         className='m-2'
@@ -240,6 +240,203 @@ const RemovalToDisposal: React.FC = () => {
                                     No
                                 </label>
                             </div>
+                              <div className="lg:pl-1 lg:w-1/2">
+                                <label htmlFor="currentZip" className="block text-sm font-medium text-primary-900">
+                                    Number of Steps
+                                </label>
+                                <input
+                                    type="number"
+                                    min={0}
+                                    defaultValue={0}
+                                    name="steps"
+                                    id="steps"
+                                    value={formData.steps}
+                                    onChange={handleChange}
+                                    className="mt-1 rounded-md block w-full border border-gray-900 shadow-md p-2 sm:text-sm"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div className='block text-sm font-medium text-primary-900'>
+                        <label className='lg:pr-1 lg:w-1/2'>Spa Placement</label>
+                            <div className='grid lg:grid-cols-3 gap-4 mt-2 grid-cols-2'>
+                                <label className=''>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="placementSpot"
+                                        value="Porch"
+                                        checked={formData.placementSpot === 'Porch'}
+                                        onChange={handleChange}
+                                    />
+                                    Porch 
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="placementSpot"
+                                        value="Deck"
+                                        checked={formData.placementSpot === 'Deck'}
+                                        onChange={handleChange}
+                                    />
+                                    Deck
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="placementSpot"
+                                        value="Patio"
+                                        checked={formData.placementSpot === 'Patio'}
+                                        onChange={handleChange}
+                                    />
+                                   Patio 
+                                </label>
+                                <label className=''>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="placementSpot"
+                                        value="Garage"
+                                        checked={formData.placementSpot === 'Garage'}
+                                        onChange={handleChange}
+                                    />
+                                    Garage       
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="placementSpot"
+                                        value="EZ Pad"
+                                        checked={formData.placementSpot === 'EZ Pad'}
+                                        onChange={handleChange}
+                                    />
+                                    EZ Pad
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="placementSpot"
+                                        value="Yard"
+                                        checked={formData.placementSpot === 'Yard'}
+                                        onChange={handleChange}
+                                    />
+                                   Yard 
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="placementSpot"
+                                        value="Driveway"
+                                        checked={formData.placementSpot === 'Driveway'}
+                                        onChange={handleChange}
+                                    />
+                                   Driveway 
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="placementSpot"
+                                        value="Homemade Area"
+                                        checked={formData.placementSpot === 'Homemade Area'}
+                                        onChange={handleChange}
+                                    />
+                                   Custom
+                                </label>
+                        </div>
+                    </div>
+
+                    <div className='block text-sm font-medium text-primary-900'>
+                        <label className='lg:pr-1 lg:w-1/2'>Spa Access</label>
+                            <div className='grid lg:grid-cols-2 gap-4 mt-2 grid-cols-1'>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="access"
+                                        value="Gate"
+                                        checked={formData.access === 'Gate'}
+                                        onChange={handleChange}
+                                    />
+                                    Gate 
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="access"
+                                        value="Drive Up"
+                                        checked={formData.access === 'Drive Up'}
+                                        onChange={handleChange}
+                                    />
+                                    Drive Up
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="access"
+                                        value="Fence Removed"
+                                        checked={formData.access === 'Fence Removed'}
+                                        onChange={handleChange}
+                                    />
+                                   Fence Removed 
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="access"
+                                        value="Through House"
+                                        checked={formData.access === 'Through House'}
+                                        onChange={handleChange}
+                                    />
+                                    Through House 
+                                </label>
+                        </div>
+                    </div>
+
+                    <div className='block text-sm font-medium text-primary-900'>
+                        <label className='lg:pr-1 lg:w-1/2'>Path of Removal</label>
+                            <div className='grid lg:grid-cols-2 gap-4 mt-2 grid-cols-1'>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="propertySlope"
+                                        value="Flat"
+                                        checked={formData.propertySlope === 'Flat'}
+                                        onChange={handleChange}
+                                    />
+                                    Flat 
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="propertySlope"
+                                        value="Descend to Location"
+                                        checked={formData.propertySlope === 'Descend to Location'}
+                                        onChange={handleChange}
+                                    />
+                                    Descending to Spa
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="propertySlope"
+                                        value="Ascend to Location"
+                                        checked={formData.propertySlope === 'Ascend to Location'}
+                                        onChange={handleChange}
+                                    />
+                                      Ascending to Spa
+                                </label>
                         </div>
                     </div>
 
@@ -277,6 +474,21 @@ const RemovalToDisposal: React.FC = () => {
                         </div>
                     </div> 
 
+                    {/* Obstacles Single Column */}
+                    <div>
+                        <label htmlFor="obstacles" className="block text-sm font-medium text-primary-900">
+                            Obstacles on Path
+                        </label>
+                        <input
+                            type="text"
+                            name="obstacles"
+                            id="email"
+                            value={formData.obstacles}
+                            onChange={handleChange}
+                            className="mt-1 rounded-md block w-full border border-primary-900 shadow-md p-2 sm:text-sm"
+                            placeholder='Rocks, Trees, Roots, Ditches, Walls, etc.'
+                        />
+                    </div>
                     {/* Message Input (single column) */}
                     <div>
                         <label htmlFor="message" className="block text-sm font-medium text-primary-900">
