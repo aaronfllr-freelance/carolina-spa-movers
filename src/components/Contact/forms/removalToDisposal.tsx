@@ -89,15 +89,13 @@ const RemovalToDisposal: React.FC = () => {
 
 
     return (
-        <Card className="p-5 my-6 bg-primary-200 shadow-lg shadow-primary-900">
-            <div className="max-w-lg mx-auto p-4">
-                <h2 className="text-4xl text-primary-900 font-bold mb-4">Contact Us</h2>
+        
                     <form name="contact" onSubmit={notifySentForm} className="space-y-4">
                     {/* Name and Phone Number */}
                     <div className='flex-col'>
                         <div className="lg:flex">
                             <div className="lg:pr-1 lg:w-1/2">
-                                <label htmlFor="name" className="block text-sm font-medium text-primary-900">
+                                <label htmlFor="name" className="block text-md font-bold text-primary-900">
                                     Name
                                 </label>
                                 <input
@@ -111,7 +109,7 @@ const RemovalToDisposal: React.FC = () => {
                                 />
                             </div>
                             <div className="lg:pl-1 lg:w-1/2">
-                                <label htmlFor="phone" className="block text-sm font-medium text-primary-900">
+                                <label htmlFor="phone" className="block text-md font-bold text-primary-900">
                                     Phone Number
                                 </label>
                                 <input
@@ -130,7 +128,7 @@ const RemovalToDisposal: React.FC = () => {
 
                     {/* Email Input (single column) */}
                     <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-primary-900">
+                        <label htmlFor="email" className="block text-md font-bold text-primary-900">
                             Email Address
                         </label>
                         <input
@@ -148,7 +146,7 @@ const RemovalToDisposal: React.FC = () => {
                     <div className='flex-col'>
                         <div className="lg:flex">
                             <div className="lg:pr-1 lg:w-1/2">
-                                <label htmlFor="currentAddress" className="block text-sm font-medium text-primary-900">
+                                <label htmlFor="currentAddress" className="block text-md font-bold text-primary-900">
                                     Spa's Current Address
                                 </label>
                                 <input
@@ -162,7 +160,7 @@ const RemovalToDisposal: React.FC = () => {
                                 />
                             </div>
                             <div className="lg:pl-1 lg:w-1/2">
-                                <label htmlFor="currentCity" className="block text-sm font-medium text-primary-900">
+                                <label htmlFor="currentCity" className="block text-md font-bold text-primary-900">
                                     Spa's Current City
                                 </label>
                                 <input
@@ -182,7 +180,7 @@ const RemovalToDisposal: React.FC = () => {
                     <div className='flex-col'>
                         <div className="lg:flex">
                             <div className="lg:pr-1 lg:w-1/2">
-                                <label htmlFor="currentState" className="block text-sm font-medium text-primary-900">
+                                <label htmlFor="currentState" className="block text-md font-bold text-primary-900">
                                     Spa's Current State
                                 </label>
                                 <input
@@ -196,7 +194,7 @@ const RemovalToDisposal: React.FC = () => {
                                 />
                             </div>
                             <div className="lg:pl-1 lg:w-1/2">
-                                <label htmlFor="currentZip" className="block text-sm font-medium text-primary-900">
+                                <label htmlFor="currentZip" className="block text-md font-bold text-primary-900">
                                     Spa's Current Zip
                                 </label>
                                 <input
@@ -213,11 +211,12 @@ const RemovalToDisposal: React.FC = () => {
                     </div>
                     {/* Radio Button */}
               
-                    <div className='flex-col text-sm font-medium text-primary-900'>
+                    <div className='flex-col text-md font-bold text-primary-900'>
                         <div className="lg:flex">
                             <div className="lg:pr-1 lg:w-1/2">
                                 <label className='lg:pr-1 lg:w-1/2'>Has path been measured for Clearance?</label>
-                                <label className='block gap-4 mt-2'>
+                                <div className='grid font-medium gap-4 mt-2 col-'>
+                                <label className=''>
                                     <input
                                         type="radio"
                                         className='m-2'
@@ -239,9 +238,10 @@ const RemovalToDisposal: React.FC = () => {
                                     />
                                     No
                                 </label>
+                                </div>
                             </div>
                               <div className="lg:pl-1 lg:w-1/2">
-                                <label htmlFor="currentZip" className="block text-sm font-medium text-primary-900">
+                                <label htmlFor="currentZip" className="block text-md font-bold text-primary-900">
                                     Number of Steps
                                 </label>
                                 <input
@@ -257,9 +257,9 @@ const RemovalToDisposal: React.FC = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='block text-sm font-medium text-primary-900'>
+                    <div className='block text-md font-bold text-primary-900'>
                         <label className='lg:pr-1 lg:w-1/2'>Spa Placement</label>
-                            <div className='grid lg:grid-cols-3 gap-4 mt-2 grid-cols-2'>
+                            <div className='grid lg:grid-cols-3 font-medium gap-4 mt-2 grid-cols-2'>
                                 <label className=''>
                                     <input
                                         type="radio"
@@ -351,9 +351,9 @@ const RemovalToDisposal: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className='block text-sm font-medium text-primary-900'>
+                    <div className='block text-md font-bold text-primary-900'>
                         <label className='lg:pr-1 lg:w-1/2'>Spa Access</label>
-                            <div className='grid lg:grid-cols-2 gap-4 mt-2 grid-cols-1'>
+                            <div className='grid lg:grid-cols-2 font-medium gap-4 mt-2 grid-cols-1'>
                                 <label>
                                     <input
                                         type="radio"
@@ -401,9 +401,9 @@ const RemovalToDisposal: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className='block text-sm font-medium text-primary-900'>
+                    <div className='block text-md font-bold text-primary-900'>
                         <label className='lg:pr-1 lg:w-1/2'>Path of Removal</label>
-                            <div className='grid lg:grid-cols-2 gap-4 mt-2 grid-cols-1'>
+                            <div className='grid lg:grid-cols-2 text-md font-medium gap-4 mt-2 grid-cols-1'>
                                 <label>
                                     <input
                                         type="radio"
@@ -444,7 +444,7 @@ const RemovalToDisposal: React.FC = () => {
                     <div className='flex-col'>
                         <div className="lg:flex">
                             <div className="lg:pr-1 lg:w-1/2">
-                                <label htmlFor="brand" className="block text-sm font-medium text-primary-900">
+                                <label htmlFor="brand" className="block text-md font-bold text-primary-900">
                                     Spa Brand
                                 </label>
                                 <input
@@ -458,7 +458,7 @@ const RemovalToDisposal: React.FC = () => {
                                 />
                             </div>
                             <div className="lg:pl-1 lg:w-1/2">
-                                <label htmlFor="dimensions" className="block text-sm font-medium text-primary-900">
+                                <label htmlFor="dimensions" className="block text-md font-bold text-primary-900">
                                     Spa Dimensions
                                 </label>
                                 <input
@@ -476,13 +476,13 @@ const RemovalToDisposal: React.FC = () => {
 
                     {/* Obstacles Single Column */}
                     <div>
-                        <label htmlFor="obstacles" className="block text-sm font-medium text-primary-900">
+                        <label htmlFor="obstacles" className="block text-md font-bold text-primary-900">
                             Obstacles on Path
                         </label>
                         <input
                             type="text"
                             name="obstacles"
-                            id="email"
+                            id="obstacles"
                             value={formData.obstacles}
                             onChange={handleChange}
                             className="mt-1 rounded-md block w-full border border-primary-900 shadow-md p-2 sm:text-sm"
@@ -491,7 +491,7 @@ const RemovalToDisposal: React.FC = () => {
                     </div>
                     {/* Message Input (single column) */}
                     <div>
-                        <label htmlFor="message" className="block text-sm font-medium text-primary-900">
+                        <label htmlFor="message" className="block text-md font-bold text-primary-900">
                             How can we help?
                         </label>
                         <textarea
@@ -526,8 +526,7 @@ const RemovalToDisposal: React.FC = () => {
                 </form>
 
 
-            </div>
-        </Card>
+            
     );
 };
 
