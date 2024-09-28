@@ -5,6 +5,7 @@ const resend = new Resend(process.env.VITE_RESEND_API_KEY as string);
 const fromEmail = process.env.SENDER_EMAIL as string || '';
 
 interface EmailRequest {
+    dealer: string;
     name: string;
     email: string;
     phone: string;
@@ -30,6 +31,7 @@ interface EmailRequest {
 
 export const handler: Handler = async (event) => {
         const {
+            dealer,
             name, 
             email, 
             phone, 
@@ -66,7 +68,15 @@ export const handler: Handler = async (event) => {
         Current Address of Hot Tub: ${currentAddress}, ${currentCity}, ${currentState}, ${currentZip}
         
         Where the Hot Tub is Going: ${destinationAddress}, ${destinationCity}, ${destinationState}, ${destinationZip}
+        Placement Spot: ${placementSpot}
 
+        Steps: ${steps}
+        Access: ${access}
+        Property Slope: ${propertySlope}
+        Slope: ${slope}
+        Obstacles: ${obstacles}
+
+        dealer: ${dealer}
         
         Message:
         ${message}
