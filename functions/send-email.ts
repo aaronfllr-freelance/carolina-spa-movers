@@ -5,6 +5,7 @@ const resend = new Resend(process.env.VITE_RESEND_API_KEY as string);
 const fromEmail = process.env.SENDER_EMAIL as string || '';
 
 interface EmailRequest {
+    formType: string;
     dealer: string;
     name: string;
     email: string;
@@ -31,6 +32,7 @@ interface EmailRequest {
 
 export const handler: Handler = async (event) => {
         const {
+            formType,
             dealer,
             name, 
             email, 

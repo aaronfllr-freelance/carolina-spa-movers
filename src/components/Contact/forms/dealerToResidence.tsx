@@ -9,6 +9,7 @@ import { Button } from '@/components/Button';
 
 const DealerToResidence: React.FC = () => {
     const [formData, setFormData] = useState({
+        formType: 'dealerToResidential',
         dealer: '',
         name: '',
         phone: '',
@@ -56,6 +57,7 @@ const DealerToResidence: React.FC = () => {
     
         e.preventDefault();
         const payload = {
+            formType: 'dealerToResidential',
             dealer: formData.dealer,
             name: formData.name,
             email: formData.email,

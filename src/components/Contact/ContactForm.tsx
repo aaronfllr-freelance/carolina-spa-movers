@@ -5,6 +5,8 @@ import ContactForm from "./forms/formBase"
 import RemovalToDisposal from "./forms/removalToDisposal"
 import { Card } from "../ui/card"
 import DealerToResidence from "./forms/dealerToResidence"
+import ResidentToResident from "./forms/residenceToResidence"
+import SpaToStorage from "./forms/spaToStorage"
 
 export default function Form() {
     const [formType, setFormType] = useState('')
@@ -15,8 +17,12 @@ export default function Form() {
                 return <RemovalToDisposal />
             case 'dealerToResidential':
                 return <DealerToResidence />
+            case 'residentToResident':
+                return <ResidentToResident />
+            case 'residentToStorage':
+                return <SpaToStorage />
             default:
-                return <ContactForm />
+                return ''
         }
     }
     return (
@@ -30,9 +36,11 @@ export default function Form() {
                         onChange={(e) => setFormType(e.target.value)}
                         className="mt-1 my-4 rounded-md block w-full border bg-white border-primary-900 shadow-md p-2 text-md"
                     >
-                        <option value="">Select a form</option>
+                        <option value="">What can we help with?</option>
                         <option value="removalToDisposal">Removal to Disposal</option>
                         <option value="dealerToResidential">Dealer to Residential</option>
+                        <option value="residentToResident">Residential to Residential</option>
+                        <option value="residentToStorage">Residential to Storage</option>
                     </select>
                     {renderForm()}
                 </div>
