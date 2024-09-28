@@ -9,6 +9,7 @@ import { Button } from '@/components/Button';
 
 const RemovalToDisposal: React.FC = () => {
     const [formData, setFormData] = useState({
+        formType: 'removalToDisposal',
         name: '',
         phone: '',
         email: '',
@@ -55,6 +56,7 @@ const RemovalToDisposal: React.FC = () => {
     
         e.preventDefault();
         const payload = {
+            formType: 'removalToDisposal',
             name: formData.name,
             email: formData.email,
             phone: formattedPhone,
