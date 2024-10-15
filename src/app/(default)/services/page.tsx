@@ -35,7 +35,7 @@ export default function ServicesPage() {
                             <img src={service.icon} alt={service.title} className="mx-auto mb-4 w-16 h-16" />
                             <h3 className="text-xl  font-semibold mb-2">{service.title}</h3>
                             <p className="mb-4">{service.description}</p>
-                            <a href={service.link} className="text-primary-100 hover:underline">
+                            <a href={service.link} className="text-primary-900 hover:underline">
                                 LEARN MORE &gt;
                             </a>
                         </div>
