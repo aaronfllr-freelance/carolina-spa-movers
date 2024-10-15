@@ -24,8 +24,8 @@ export default function ServicesPage() {
     return (
         <>
         <Card className="p-5 my-6 bg-primary-200 shadow-lg shadow-primary-900">
-            <div className="container text-primary-900 mx-auto py-12">
-                <h2 className="text-3xl font-bold text-center mb-4">Our Services</h2>
+            <div className="container text-primary-900 mx-auto py-8">
+                <h2 className="text-4xl font-extrabold text-center mb-4">Our Services</h2>
                 <p className="text-center mb-8">
                     We provide services from moving to maintenance and everything in between. We are everything hot tubs!
                 </p>

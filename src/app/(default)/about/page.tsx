@@ -4,11 +4,14 @@ export default function AboutPage() {
   return (
     <>
       <Card className="p-5 my-6 bg-primary-200 shadow-lg shadow-primary-900">
-        <div className="flex flex-col md:flex-row items-center md:gap-8">
-          <div className="max-w-3xl flex-1 lg:mr-6">
-            <h2 className="mb-4 text-4xl font-extrabold text-primary-50 dark:text-primary-900">
+         <h2 className="mb-4 text-4xl py-8 text-center font-extrabold text-primary-50 dark:text-primary-900">
               About Us
-            </h2>
+          </h2>
+        <div className="flex flex-col md:flex-row items-center md:gap-8 px-4 py-8">
+          <div className="max-w-3xl flex-1 lg:mr-6">
+            {/* <h2 className="mb-4 text-4xl text-center font-extrabold text-primary-50 dark:text-primary-900">
+              About Us
+            </h2> */}
             <p className="my-6 font-normal text-primary-900 sm:text-xl dark:text-primary-900">
               <b>We Specialize in Local & Long distance Spa & Hot Tub Moves</b> 
             </p>
