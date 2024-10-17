@@ -11,6 +11,12 @@ const defaultImages = [
     { src: "/assets/images/spas/spa4.jpg", alt: "Four", height: 400, width: 400 },
     { src: "/assets/images/spas/spa5.jpg", alt: "Five", height: 400, width: 400 },
     { src: "/assets/images/spas/spa6.jpg", alt: "Six", height: 400, width: 400 },
+    { src: "/assets/images/spas/spa7.jpg", alt: "Seven", height: 400, width: 400 },
+    { src: "/assets/images/spas/spa8.jpg", alt: "Eight", height: 400, width: 400 },
+    { src: "/assets/images/spas/spa9.jpg", alt: "Nine", height: 400, width: 400 },
+    { src: "/assets/images/spas/spa10.jpg", alt: "Ten", height: 400, width: 400 },
+    { src: "/assets/images/spas/spa11.jpg", alt: "Eleven", height: 400, width: 400 },
+    { src: "/assets/images/spas/spa12.jpg", alt: "Twelve", height: 400, width: 400 },
 ];
 
 export const ImageGallery: React.FC<GalleryProps> = ({ images = defaultImages }) => {

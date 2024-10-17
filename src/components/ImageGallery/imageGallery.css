@@ -4,6 +4,7 @@
   --f: 1.5;   /* control the scale factor */
   display: grid;
   gap: var(--g);
+  height: calc(7*var(--s) + 6*var(--g));
   width: calc(7*var(--s) + 6*var(--g));
   aspect-ratio: 1.5;
   grid-template-columns: repeat(3,auto);
