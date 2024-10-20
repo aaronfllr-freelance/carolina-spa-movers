@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@netlify/functions": "^2.8.1",
+    "@react-email/components": "^0.0.25",
     "@reduxjs/toolkit": "^2.2.7",
     "axios": "^1.7.7",
     "class-variance-authority": "^0.7.0",

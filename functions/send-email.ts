@@ -1,12 +1,18 @@
 import { Resend } from 'resend';
 import { Handler } from '@netlify/functions';
+import { render } from '@react-email/render';
+import DealerToResidentialEmail from '@/components/Contact/emailTemplates/dealerToResidential';
+import SpaToStorageEmail from '@/components/Contact/emailTemplates/spaToStorage';
+import React from 'react';
+import ResidentToResidentEmail from '@/components/Contact/emailTemplates/residenceToResidence';
+import RemovalToDisposalEmail from '@/components/Contact/emailTemplates/removalToDisposal';
 
 const resend = new Resend(process.env.VITE_RESEND_API_KEY as string);
 const fromEmail = process.env.SENDER_EMAIL as string || '';
 
 interface EmailRequest {
     formType: string;
-    dealer: string;
+    dealer?: string;
     name: string;
     email: string;
     phone: string;
@@ -15,10 +21,6 @@ interface EmailRequest {
     currentCity: string;
     currentState: string;
     currentZip: string;
-    destinationAddress?: string;
-    destinationCity?: string;
-    destinationState?: string;
-    destinationZip?: string;
     brand?: string;
     dimensions?: string;
     pathClearance?: string;
@@ -28,6 +30,17 @@ interface EmailRequest {
     propertySlope?: string;
     slope?: string;
     obstacles?: string;
+    destinationAddress?: string;
+    destinationCity?: string;
+    destinationState?: string;
+    destinationZip?: string;
+    destinationPathClearance?: string;
+    destinationPlacementSpot?: string;
+    destinationSteps?: string;
+    destinationAccess?: string;
+    destinationPropertySlope?: string;
+    destinationSlope?: string;
+    destinationObstacles?: string;
 }
 
 export const handler: Handler = async (event) => {
@@ -54,40 +67,74 @@ export const handler: Handler = async (event) => {
             access,
             propertySlope,
             slope,
-            obstacles
+            obstacles,
+            destinationPathClearance,
+            destinationPlacementSpot,
+            destinationSteps,
+            destinationAccess,
+            destinationPropertySlope,
+            destinationSlope,
+            destinationObstacles
         }: EmailRequest = JSON.parse(event.body as string);
+        const emailData = {
+            formType,
+            name,
+            phone,
+            email,
+            message,
+            currentAddress,
+            currentCity,
+            currentState,
+            currentZip,
+            // Only include optional fields if they exist
+            dealer: dealer || '', 
+            destinationAddress: destinationAddress || '',
+            destinationCity: destinationCity || '',
+            destinationState: destinationState || '',
+            destinationZip: destinationZip || '',
+            brand: brand || '',  
+            dimensions: dimensions || '',
+            pathClearance: pathClearance || '',
+            placementSpot: placementSpot || '',
+            steps: steps || '',
+            access: access || '',
+            propertySlope: propertySlope || '',
+            slope: slope || '',
+            obstacles: obstacles || '',
+            destinationPathClearance: destinationPathClearance || '',
+            destinationPlacementSpot: destinationPlacementSpot || '',
+            destinationSteps: destinationSteps || '',
+            destinationAccess: destinationAccess || '',
+            destinationPropertySlope: destinationPropertySlope || '',
+            destinationSlope: destinationSlope || '',
+            destinationObstacles: destinationObstacles || '',
+            };
+
+            let htmlEmail;
+
+            // Conditionally select the email template based on formType
+            if (formType === 'dealerToResidential') {
+            htmlEmail = render(React.createElement(DealerToResidentialEmail, { formData: emailData }));
+            } else if (formType === 'residentToStorage') {
+            htmlEmail = render(React.createElement(SpaToStorageEmail, { formData: emailData }));
+            } else if (formType === 'residentToResident') {
+            htmlEmail = render(React.createElement(ResidentToResidentEmail, { formData: emailData }));
+            } else if (formType === 'removalToDisposal') {
+            htmlEmail = render(React.createElement(RemovalToDisposalEmail, { formData: emailData }));
+            }
+             
+            else {
+            return {
+                statusCode: 400,
+                body: 'Invalid form type',
+            };
+            }
  
-        const emailBody = `
-        You have a new message from Carolina Spa website:
-
-        Name: ${name}
-        Email: ${email}
-        Phone: ${phone}
-
-        Brand: ${brand}
-        Dimensions: ${dimensions}
-        Path Clearance: ${pathClearance}
-        Current Address of Hot Tub: ${currentAddress}, ${currentCity}, ${currentState}, ${currentZip}
-        
-        Where the Hot Tub is Going: ${destinationAddress}, ${destinationCity}, ${destinationState}, ${destinationZip}
-        Placement Spot: ${placementSpot}
-
-        Steps: ${steps}
-        Access: ${access}
-        Property Slope: ${propertySlope}
-        Slope: ${slope}
-        Obstacles: ${obstacles}
-
-        dealer: ${dealer}
-        
-        Message:
-        ${message}
-        `
         const {data, error} = await resend.emails.send({
             from: `Carolina Spa Movers Website <CarolinaSpaMovers@resend.dev>`,
             to: "aaronfllr.work@gmail.com",
             subject: "Spa Needs Moving",
-            text: emailBody,
+            html: htmlEmail,
         });
         
         if (error) return {
