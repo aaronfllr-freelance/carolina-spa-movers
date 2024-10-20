@@ -41,6 +41,7 @@ interface EmailRequest {
     destinationPropertySlope?: string;
     destinationSlope?: string;
     destinationObstacles?: string;
+    images?: { name: string; base64: string }[]; // Base64 encoded images
 }
 
 export const handler: Handler = async (event) => {
@@ -74,8 +75,10 @@ export const handler: Handler = async (event) => {
             destinationAccess,
             destinationPropertySlope,
             destinationSlope,
-            destinationObstacles
+            destinationObstacles,
+            images
         }: EmailRequest = JSON.parse(event.body as string);
+
         const emailData = {
             formType,
             name,
@@ -112,6 +115,7 @@ export const handler: Handler = async (event) => {
 
             let htmlEmail;
 
+
             // Conditionally select the email template based on formType
             if (formType === 'dealerToResidential') {
             htmlEmail = render(React.createElement(DealerToResidentialEmail, { formData: emailData }));
@@ -121,20 +125,25 @@ export const handler: Handler = async (event) => {
             htmlEmail = render(React.createElement(ResidentToResidentEmail, { formData: emailData }));
             } else if (formType === 'removalToDisposal') {
             htmlEmail = render(React.createElement(RemovalToDisposalEmail, { formData: emailData }));
-            }
-             
-            else {
-            return {
-                statusCode: 400,
-                body: 'Invalid form type',
-            };
+            } else {
+                return {
+                    statusCode: 400,
+                    body: 'Invalid form type',
+                };
             }
  
+        const attachments = images?.map((image) => ({
+            filename: image.name,
+            content: image.base64.split(',')[1],  // Strip the base64 header (data:image/...)
+            encoding: 'base64',
+        })) || [];
+
         const {data, error} = await resend.emails.send({
             from: `Carolina Spa Movers Website <CarolinaSpaMovers@resend.dev>`,
             to: "aaronfllr.work@gmail.com",
             subject: "Spa Needs Moving",
             html: htmlEmail,
+            attachments,
         });
         
         if (error) return {
