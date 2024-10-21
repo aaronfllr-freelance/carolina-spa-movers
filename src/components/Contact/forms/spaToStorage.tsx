@@ -9,7 +9,6 @@ import { Button } from '@/components/Button';
 
 const SpaToStorage: React.FC = () => {
     const [formData, setFormData] = useState({
-        formType: 'residentToStorage',
         name: '',
         phone: '',
         email: '',
@@ -27,10 +26,53 @@ const SpaToStorage: React.FC = () => {
         propertySlope: '',
         slope: '',
         obstacles: '',
+        destinationAddress: '',
+        destinationCity: '',
+        destinationState: '',
+        destinationZip: '',
+        destinationPathClearance: '',
+        destinationPlacementSpot: '',
+        destinationSteps: '',
+        destinationAccess: '',
+        destinationPropertySlope: '',
+        destinationSlope: '',
+        destinationObstacles: '',
+        images: [] as { name: string; base64: string }[], // Base64 encoded images
     });
     const [error, setError] = useState<string | null>(null);
 
     const { value: formattedPhone, onChange: handlePhoneChange } = usePhoneNumberFormatter(formData.phone);
+
+    const convertToBase64 = (file: File): Promise<string> => {
+        return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result as string);
+        reader.onerror = (error) => reject(error);
+        });
+    };
+
+    const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files) {
+            // Convert new files to base64
+            const newFilesArray = Array.from(event.target.files).slice(0, 5); // Limit to 5 new files
+
+            const newBase64Files = await Promise.all(
+            newFilesArray.map(async (file) => ({
+                name: file.name,
+                base64: await convertToBase64(file), // Convert each file to base64
+            }))
+            );
+
+            // Append new base64 files to existing ones, but still limit to 5
+            const updatedFilesArray = [...formData.images, ...newBase64Files].slice(0, 5);
+
+            setFormData((prevData) => ({
+            ...prevData,
+            images: updatedFilesArray, // Store updated base64 files
+            }));
+        }
+    };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -56,7 +98,7 @@ const SpaToStorage: React.FC = () => {
     
         e.preventDefault();
         const payload = {
-            formType: 'residentToStorage',
+            formType: 'spaToStorage',
             name: formData.name,
             email: formData.email,
             phone: formattedPhone,
@@ -73,7 +115,19 @@ const SpaToStorage: React.FC = () => {
             access: formData.access,  
             propertySlope: formData.propertySlope,
             slope: formData.slope,
-            obstacles: formData.obstacles, 
+            obstacles: formData.obstacles,
+            distinationAddress: formData.destinationAddress,
+            destinationCity: formData.destinationCity,
+            destinationState: formData.destinationState,
+            destinationZip: formData.destinationZip,
+            destinationPathClearance: formData.destinationPathClearance,  
+            destinationPlacementSpot: formData.destinationPlacementSpot,
+            destinationSteps: formData.destinationSteps,
+            destinationAccess: formData.destinationAccess,  
+            destinationPropertySlope: formData.destinationPropertySlope,
+            destinationSlope: formData.destinationSlope,
+            destinationObstacles: formData.destinationObstacles,
+            images: formData.images,    
         };
 
 
@@ -91,8 +145,7 @@ const SpaToStorage: React.FC = () => {
 
 
     return (
-        
-                    <form name="contact" onSubmit={notifySentForm} className="space-y-4">
+        <form name="contact" onSubmit={notifySentForm} className="space-y-4">
                     {/* Name and Phone Number */}
                     <div className='flex-col'>
                         <div className="lg:flex">
@@ -211,8 +264,7 @@ const SpaToStorage: React.FC = () => {
                             </div>
                         </div>
                     </div>
-                    {/* Radio Button */}
-              
+                    {/* Current location details */}
                     <div className='flex-col text-md font-bold text-primary-900'>
                         <div className="lg:flex">
                             <div className="lg:pr-1 lg:w-1/2">
@@ -442,6 +494,300 @@ const SpaToStorage: React.FC = () => {
                         </div>
                     </div>
 
+                    {/* Destination Address and City (2 columns) */}
+                    <div className='flex-col font-bold text-md'>
+                        <div className="lg:flex">
+                            <div className="lg:pr-1 lg:w-1/2">
+                                <label htmlFor="destinationAddress" className="block text-primary-900">
+                                    Storage Address
+                                </label>
+                                <input
+                                    type="text"
+                                    name="destinationAddress"
+                                    id="destinationAddress"
+                                    value={formData.destinationAddress}
+                                    onChange={handleChange}
+                                    className="mt-1 rounded-md block w-full border border-gray-900 shadow-md p-2 sm:text-sm"
+                                />
+                            </div>
+                            <div className="lg:pl-1 lg:w-1/2">
+                                <label htmlFor="destinationCity" className="block text-primary-900">
+                                    Storage City
+                                </label>
+                                <input
+                                    type="text"
+                                    name="destinationCity"
+                                    id="destinationCity"
+                                    value={formData.destinationCity}
+                                    onChange={handleChange}
+                                    className="mt-1 rounded-md block w-full border border-gray-900 shadow-md p-2 sm:text-sm"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Destination State and Zip (2 columns) */}
+                    <div className='flex-col font-bold text-md'>
+                        <div className="lg:flex">
+                            <div className="lg:pr-1 lg:w-1/2">
+                                <label htmlFor="destinationState" className="block text-primary-900">
+                                    Storage State
+                                </label>
+                                <input
+                                    type="text"
+                                    name="destinationState"
+                                    id="destinationState"
+                                    value={formData.destinationState}
+                                    onChange={handleChange}
+                                    className="mt-1 rounded-md block w-full border border-gray-900 shadow-md p-2 sm:text-sm"
+                                />
+                            </div>
+                            <div className="lg:pl-1 lg:w-1/2">
+                                <label htmlFor="destinationZip" className="block text-primary-900">
+                                    Storage Zip
+                                </label>
+                                <input
+                                    type="text"
+                                    name="destinationZip"
+                                    id="destinationZip"
+                                    value={formData.destinationZip}
+                                    onChange={handleChange}
+                                    className="mt-1 rounded-md block w-full border border-gray-900 shadow-md p-2 sm:text-sm"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Radio Button */}
+                    <div className='flex-col text-md font-bold text-primary-900'>
+                        <div className="lg:flex">
+                            <div className="lg:pr-1 lg:w-1/2">
+                                <label className='lg:pr-1 lg:w-1/2'>Has the storage path been measured for Clearance?</label>
+                                <div className='grid font-medium gap-4 mt-2 col-'>
+                                <label className=''>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="destinationPathClearance"
+                                        value="Yes"
+                                        checked={formData.destinationPathClearance === 'Yes'}
+                                        onChange={handleChange}
+                                    />
+                                    Yes       
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="destinationPathClearance"
+                                        value="No"
+                                        checked={formData.destinationPathClearance === 'No'}
+                                        onChange={handleChange}
+                                    />
+                                    No
+                                </label>
+                                </div>
+                            </div>
+                              <div className="lg:pl-1 lg:w-1/2">
+                                <label htmlFor="destinationSteps" className="block text-md font-bold text-primary-900">
+                                    Number of Steps
+                                </label>
+                                <input
+                                    type="number"
+                                    min={0}
+                                    defaultValue={0}
+                                    name="destinationSteps"
+                                    id="destinationSteps"
+                                    value={formData.destinationSteps}
+                                    onChange={handleChange}
+                                    className="mt-1 rounded-md block w-full border border-gray-900 shadow-md p-2 sm:text-sm"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div className='block text-md font-bold text-primary-900'>
+                        <label className='lg:pr-1 lg:w-1/2'>Spa Placement</label>
+                            <div className='grid lg:grid-cols-3 font-medium gap-4 mt-2 grid-cols-2'>
+                                <label className=''>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="destinationPlacementSpot"
+                                        value="Porch"
+                                        checked={formData.destinationPlacementSpot === 'Porch'}
+                                        onChange={handleChange}
+                                    />
+                                    Porch 
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="destinationPlacementSpot"
+                                        value="Deck"
+                                        checked={formData.destinationPlacementSpot === 'Deck'}
+                                        onChange={handleChange}
+                                    />
+                                    Deck
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="destinationPlacementSpot"
+                                        value="Patio"
+                                        checked={formData.destinationPlacementSpot === 'Patio'}
+                                        onChange={handleChange}
+                                    />
+                                   Patio 
+                                </label>
+                                <label className=''>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="destinationPlacementSpot"
+                                        value="Garage"
+                                        checked={formData.destinationPlacementSpot === 'Garage'}
+                                        onChange={handleChange}
+                                    />
+                                    Garage       
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="destinationPlacementSpot"
+                                        value="EZ Pad"
+                                        checked={formData.destinationPlacementSpot === 'EZ Pad'}
+                                        onChange={handleChange}
+                                    />
+                                    EZ Pad
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="destinationPlacementSpot"
+                                        value="Yard"
+                                        checked={formData.destinationPlacementSpot === 'Yard'}
+                                        onChange={handleChange}
+                                    />
+                                   Yard 
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="destinationPlacementSpot"
+                                        value="Driveway"
+                                        checked={formData.destinationPlacementSpot === 'Driveway'}
+                                        onChange={handleChange}
+                                    />
+                                   Driveway 
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="destinationPlacementSpot"
+                                        value="Homemade Area"
+                                        checked={formData.destinationPlacementSpot === 'Homemade Area'}
+                                        onChange={handleChange}
+                                    />
+                                   Custom
+                                </label>
+                        </div>
+                    </div>
+
+                    <div className='block text-md font-bold text-primary-900'>
+                        <label className='lg:pr-1 lg:w-1/2'>Spa Access</label>
+                            <div className='grid lg:grid-cols-2 font-medium gap-4 mt-2 grid-cols-1'>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="destinationAccess"
+                                        value="Gate"
+                                        checked={formData.destinationAccess === 'Gate'}
+                                        onChange={handleChange}
+                                    />
+                                    Gate 
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="destinationAccess"
+                                        value="Drive Up"
+                                        checked={formData.destinationAccess === 'Drive Up'}
+                                        onChange={handleChange}
+                                    />
+                                    Drive Up
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="destinationAccess"
+                                        value="Fence Removed"
+                                        checked={formData.destinationAccess === 'Fence Removed'}
+                                        onChange={handleChange}
+                                    />
+                                   Fence Removed 
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="destinationAccess"
+                                        value="Through House"
+                                        checked={formData.destinationAccess === 'Through House'}
+                                        onChange={handleChange}
+                                    />
+                                    Through House 
+                                </label>
+                        </div>
+                    </div>
+
+                    <div className='block text-md font-bold text-primary-900'>
+                        <label className='lg:pr-1 lg:w-1/2'>Path of Removal</label>
+                            <div className='grid lg:grid-cols-2 text-md font-medium gap-4 mt-2 grid-cols-1'>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="destinationPropertySlope"
+                                        value="Flat"
+                                        checked={formData.destinationPropertySlope === 'Flat'}
+                                        onChange={handleChange}
+                                    />
+                                    Flat 
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="destinationPropertySlope"
+                                        value="Descend to Location"
+                                        checked={formData.destinationPropertySlope === 'Descend to Location'}
+                                        onChange={handleChange}
+                                    />
+                                    Descending to Spa
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="destinationPropertySlope"
+                                        value="Ascend to Location"
+                                        checked={formData.destinationPropertySlope === 'Ascend to Location'}
+                                        onChange={handleChange}
+                                    />
+                                      Ascending to Spa
+                                </label>
+                        </div>
+                    </div>
+
                     {/* Spa Details*/}
                     <div className='flex-col'>
                         <div className="lg:flex">
@@ -506,7 +852,23 @@ const SpaToStorage: React.FC = () => {
                             required
                         ></textarea>
                     </div>
-
+                    {/* File Upload */}
+                    <div>
+                        <label htmlFor="images">Upload Images (Max 5):</label>
+                        <input type="file" id="images" name="images" multiple accept="image/*" onChange={handleFileChange} />
+                        {/* Display attached images */}
+                        <div>
+                            <h3>Attached Images:</h3>
+                            <ul>
+                            {formData.images.map((image, index) => (
+                                <li key={index}>
+                                {image.name}
+                                <img src={image.base64} alt={image.name} style={{ maxWidth: '100px', marginLeft: '10px' }} />
+                                </li>
+                            ))}
+                            </ul>
+                        </div>
+                    </div>
                     <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
                         <Button className='text-text-light shadow-md dark:text-text-dark' type='submit'>
                             Get started
@@ -526,9 +888,6 @@ const SpaToStorage: React.FC = () => {
 
                     />
                 </form>
-
-
-            
     );
 };
 

@@ -41,6 +41,12 @@ export default function ServicesPage() {
                         </div>
                     ))}
                 </div>
+                <div className="text-center mt-8">
+                    <h1 className="text-2xl font-semibold mb-4">Need help with something else?</h1>
+                    <a href="/contact" className="text-primary-900 text-xl hover:underline">
+                        Contact us for a free estimate
+                    </a>
+                </div>
             </div>
             </Card>
         </>
