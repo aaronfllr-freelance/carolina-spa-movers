@@ -37,10 +37,42 @@ const SpaToStorage: React.FC = () => {
         destinationPropertySlope: '',
         destinationSlope: '',
         destinationObstacles: '',
+        images: [] as { name: string; base64: string }[], // Base64 encoded images
     });
     const [error, setError] = useState<string | null>(null);
 
     const { value: formattedPhone, onChange: handlePhoneChange } = usePhoneNumberFormatter(formData.phone);
+
+    const convertToBase64 = (file: File): Promise<string> => {
+        return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result as string);
+        reader.onerror = (error) => reject(error);
+        });
+    };
+
+    const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files) {
+            // Convert new files to base64
+            const newFilesArray = Array.from(event.target.files).slice(0, 5); // Limit to 5 new files
+
+            const newBase64Files = await Promise.all(
+            newFilesArray.map(async (file) => ({
+                name: file.name,
+                base64: await convertToBase64(file), // Convert each file to base64
+            }))
+            );
+
+            // Append new base64 files to existing ones, but still limit to 5
+            const updatedFilesArray = [...formData.images, ...newBase64Files].slice(0, 5);
+
+            setFormData((prevData) => ({
+            ...prevData,
+            images: updatedFilesArray, // Store updated base64 files
+            }));
+        }
+    };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -95,6 +127,7 @@ const SpaToStorage: React.FC = () => {
             destinationPropertySlope: formData.destinationPropertySlope,
             destinationSlope: formData.destinationSlope,
             destinationObstacles: formData.destinationObstacles,
+            images: formData.images,    
         };
 
 
@@ -232,7 +265,6 @@ const SpaToStorage: React.FC = () => {
                         </div>
                     </div>
                     {/* Current location details */}
-              
                     <div className='flex-col text-md font-bold text-primary-900'>
                         <div className="lg:flex">
                             <div className="lg:pr-1 lg:w-1/2">
@@ -526,8 +558,7 @@ const SpaToStorage: React.FC = () => {
                         </div>
                     </div>
 
-                         {/* Radio Button */}
-              
+                    {/* Radio Button */}
                     <div className='flex-col text-md font-bold text-primary-900'>
                         <div className="lg:flex">
                             <div className="lg:pr-1 lg:w-1/2">
@@ -821,7 +852,23 @@ const SpaToStorage: React.FC = () => {
                             required
                         ></textarea>
                     </div>
-
+                    {/* File Upload */}
+                    <div>
+                        <label htmlFor="images">Upload Images (Max 5):</label>
+                        <input type="file" id="images" name="images" multiple accept="image/*" onChange={handleFileChange} />
+                        {/* Display attached images */}
+                        <div>
+                            <h3>Attached Images:</h3>
+                            <ul>
+                            {formData.images.map((image, index) => (
+                                <li key={index}>
+                                {image.name}
+                                <img src={image.base64} alt={image.name} style={{ maxWidth: '100px', marginLeft: '10px' }} />
+                                </li>
+                            ))}
+                            </ul>
+                        </div>
+                    </div>
                     <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
                         <Button className='text-text-light shadow-md dark:text-text-dark' type='submit'>
                             Get started

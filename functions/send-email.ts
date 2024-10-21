@@ -119,7 +119,7 @@ export const handler: Handler = async (event) => {
             // Conditionally select the email template based on formType
             if (formType === 'dealerToResidential') {
             htmlEmail = render(React.createElement(DealerToResidentialEmail, { formData: emailData }));
-            } else if (formType === 'residentToStorage') {
+            } else if (formType === 'spaToStorage') {
             htmlEmail = render(React.createElement(SpaToStorageEmail, { formData: emailData }));
             } else if (formType === 'residentToResident') {
             htmlEmail = render(React.createElement(ResidentToResidentEmail, { formData: emailData }));
