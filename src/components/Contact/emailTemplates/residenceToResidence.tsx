@@ -41,7 +41,7 @@ const ResidentToResidentEmail: React.FC<EmailProps> = ({ formData }) => (
       <meta charSet="UTF-8" />
       <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Resident to Resident Move Request</title>
+      <title>Resident to Resident Move</title>
     </head>
     <body style={{ fontFamily: 'Arial, sans-serif', color: '#333', lineHeight: '24px' }}>
       <div style={{ padding: '20px', maxWidth: '600px', margin: '0 auto' }}>

@@ -5,6 +5,7 @@ interface EmailProps {
   formData: {
     name: string;
     phone: string;
+    phoneSecondary?: string;
     email: string;
     message: string;
     currentAddress: string;
@@ -29,17 +30,18 @@ const RemovalToDisposalEmail: React.FC<EmailProps> = ({ formData }) => (
       <meta charSet="UTF-8" />
       <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Removal to Disposal Request</title>
+      <title>Removal to Disposal</title>
     </head>
     <body style={{ fontFamily: 'Arial, sans-serif', color: '#333', lineHeight: '24px' }}>
       <div style={{ padding: '20px', maxWidth: '600px', margin: '0 auto' }}>
-        <Heading style={{ fontSize: '24px', marginBottom: '16px' }}>Removal to Disposal Request</Heading>
+        <Heading style={{ fontSize: '24px', marginBottom: '16px' }}>Removal to Disposal</Heading>
         <Text style={{ fontSize: '16px', margin: '8px 0' }}>Name: {formData.name}</Text>
         <Text style={{ fontSize: '16px', margin: '8px 0' }}>Email: {formData.email}</Text>
         <Text style={{ fontSize: '16px', margin: '8px 0' }}>Phone: {formData.phone}</Text>
+        <Text style={{ fontSize: '16px', margin: '8px 0' }}>Secondary Phone: {formData.phoneSecondary}</Text>
         <Text style={{ fontSize: '16px', margin: '8px 0' }}>Message: {formData.message}</Text>
 
-        <Heading style={{ fontSize: '18px', margin: '16px 0' }}>Current Location Information</Heading>
+        <Heading style={{ fontSize: '18px', margin: '16px 0' }}>Pickup Location Information</Heading>
         <Text style={{ fontSize: '16px', margin: '8px 0' }}>
           Address: {formData.currentAddress}, {formData.currentCity}, {formData.currentState}, {formData.currentZip}
         </Text>
