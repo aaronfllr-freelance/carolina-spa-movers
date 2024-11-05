@@ -16,6 +16,7 @@ interface EmailRequest {
     name: string;
     email: string;
     phone: string;
+    phoneSecondary?: string;
     message: string;
     currentAddress: string;
     currentCity: string;
@@ -28,8 +29,13 @@ interface EmailRequest {
     steps?: string;
     access?: string;
     propertySlope?: string;
+    propertyTilt?: string;
     slope?: string;
     obstacles?: string;
+    destinationName: string;
+    destinationEmail: string;
+    destinationPhone: string;
+    destinationPhoneSecondary?: string;
     destinationAddress?: string;
     destinationCity?: string;
     destinationState?: string;
@@ -39,6 +45,7 @@ interface EmailRequest {
     destinationSteps?: string;
     destinationAccess?: string;
     destinationPropertySlope?: string;
+    destinationPropertyTilt?: string;
     destinationSlope?: string;
     destinationObstacles?: string;
     images?: { name: string; base64: string }[]; // Base64 encoded images
@@ -51,6 +58,7 @@ export const handler: Handler = async (event) => {
             name, 
             email, 
             phone, 
+            phoneSecondary,
             message,
             currentAddress,
             currentCity,
@@ -67,13 +75,19 @@ export const handler: Handler = async (event) => {
             steps,
             access,
             propertySlope,
+            propertyTilt,
             slope,
             obstacles,
+            destinationName,
+            destinationEmail,
+            destinationPhone,
+            destinationPhoneSecondary,
             destinationPathClearance,
             destinationPlacementSpot,
             destinationSteps,
             destinationAccess,
             destinationPropertySlope,
+            destinationPropertyTilt,
             destinationSlope,
             destinationObstacles,
             images
@@ -83,6 +97,7 @@ export const handler: Handler = async (event) => {
             formType,
             name,
             phone,
+            phoneSecondary: phoneSecondary || '',
             email,
             message,
             currentAddress,
@@ -102,13 +117,19 @@ export const handler: Handler = async (event) => {
             steps: steps || '',
             access: access || '',
             propertySlope: propertySlope || '',
+            propertyTilt: propertyTilt || '', 
             slope: slope || '',
             obstacles: obstacles || '',
+            destinationName: destinationName || '',
+            destinationPhone: destinationPhone || '',
+            destinationPhoneSecondary: destinationPhoneSecondary || '',
+            destinationEmail: destinationEmail || '', 
             destinationPathClearance: destinationPathClearance || '',
             destinationPlacementSpot: destinationPlacementSpot || '',
             destinationSteps: destinationSteps || '',
             destinationAccess: destinationAccess || '',
             destinationPropertySlope: destinationPropertySlope || '',
+            destinationPropertyTilt: destinationPropertyTilt || '',
             destinationSlope: destinationSlope || '',
             destinationObstacles: destinationObstacles || '',
             };

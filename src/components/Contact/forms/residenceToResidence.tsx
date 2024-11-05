@@ -299,7 +299,7 @@ const ResidentToResident: React.FC = () => {
                             </div>
                               <div className="lg:pl-1 lg:w-1/2">
                                 <label htmlFor="currentZip" className="block text-md font-bold text-primary-900">
-                                    Number of Steps
+                                    Number of Deck Steps
                                 </label>
                                 <input
                                     type="number"
