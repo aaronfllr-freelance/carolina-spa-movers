@@ -50,7 +50,7 @@ interface EmailRequest {
     destinationSlope?: string;
     destinationObstacles?: string;
     images?: { name: string; base64: string }[]; // Base64 encoded images
-    resume?: { name: string; base64: string }; // Base64 encoded resume
+    resume?: { name: string; base64: string }[]; // Base64 encoded resume
 }
 
 export const handler: Handler = async (event) => {
@@ -165,11 +165,11 @@ export const handler: Handler = async (event) => {
             encoding: 'base64',
         })) || [];
 
-        const resumeAttachment = resume && {
-            filename: resume.name,
-            content: resume.base64.split,
-            encoding: 'base64',
-        }
+        // const resumeAttachment = resume && {
+        //     filename: resume.name,
+        //     content: resume.base64.split,
+        //     encoding: 'base64',
+        // }
 
         // const {data, error} = await resend.emails.send({
         //     from: `Carolina Spa Movers Website <CarolinaSpaMovers@resend.dev>`,

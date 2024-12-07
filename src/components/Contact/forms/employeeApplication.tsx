@@ -12,6 +12,7 @@ const EmployeeApplicationForm: React.FC = () => {
         name: '',
         phone: '',
         email: '',
+        images: [] as { name: string; base64: string}[],
     });
     const [file, setFile] = useState<File | null>(null);
     const [error, setError] = useState<string | null>(null);
@@ -36,20 +37,50 @@ const EmployeeApplicationForm: React.FC = () => {
         }
     };
 
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files && e.target.files[0]) {
-            setFile(e.target.files[0]);
+    // const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     if (e.target.files && e.target.files[0]) {
+    //         setFile(e.target.files[0]);
+    //     }
+    // };
+   const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files) {
+            // Convert new files to base64
+            const newFilesArray = Array.from(event.target.files).slice(0, 1); // Limit to 5 new files
+
+            const newBase64Files = await Promise.all(
+            newFilesArray.map(async (file) => ({
+                name: file.name,
+                base64: await convertToBase64(file), // Convert each file to base64
+            }))
+            );
+
+            // Append new base64 files to existing ones, but still limit to 5
+            const updatedFilesArray = [...formData.images, ...newBase64Files].slice(0, 1);
+
+            setFormData((prevData) => ({
+            ...prevData,
+            images: updatedFilesArray, // Store updated base64 files
+            }));
         }
     };
 
     const convertToBase64 = (file: File): Promise<string> => {
         return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onload = () => resolve(reader.result as string);
-            reader.onerror = (error) => reject(error);
-            reader.readAsDataURL(file);
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result as string);
+        reader.onerror = (error) => reject(error);
         });
     };
+
+    // const convertToBase64 = (file: File): Promise<string> => {
+    //     return new Promise((resolve, reject) => {
+    //         const reader = new FileReader();
+    //         reader.onload = () => resolve(reader.result as string);
+    //         reader.onerror = (error) => reject(error);
+    //         reader.readAsDataURL(file);
+    //     });
+    // };
 
     const notifySentForm: React.FormEventHandler<HTMLFormElement> = async (e) => {
         e.preventDefault();
@@ -60,6 +91,7 @@ const EmployeeApplicationForm: React.FC = () => {
             name: formData.name,
             email: formData.email,
             phone: formattedPhone,
+            images: formData.images,
         };
 
         // If a file is selected, convert it to Base64 and include it in the payload
@@ -150,8 +182,8 @@ const EmployeeApplicationForm: React.FC = () => {
                         </label>
                         <input
                             type="file"
-                            name="file"
-                            id="file"
+                            name="images"
+                            id="images"
                             onChange={handleFileChange}
                             className="mt-1 block w-full text-sm text-primary-900"
                         />
