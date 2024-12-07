@@ -7,6 +7,7 @@ interface EmailProps {
     dealer: string;
     name: string;
     phone: string;
+    phoneSecondary?: string;
     email: string;
     message: string;
     destinationAddress: string;
@@ -35,10 +36,11 @@ const DealerToResidentialEmail: React.FC<EmailProps> = ({ formData }) => (
     </head>
     <body style={{ fontFamily: 'Arial, sans-serif', color: '#333', lineHeight: '24px' }}>
       <div style={{ padding: '20px', maxWidth: '600px', margin: '0 auto' }}>
-        <Heading style={{ fontSize: '24px', marginBottom: '16px' }}>Dealer to Residential Move Request</Heading>
+        <Heading style={{ fontSize: '24px', marginBottom: '16px' }}>Dealer to Residential Move</Heading>
         <Text style={{ fontSize: '16px', margin: '8px 0' }}>Dealer: {formData.dealer}</Text>
         <Text style={{ fontSize: '16px', margin: '8px 0' }}>Name: {formData.name}</Text>
         <Text style={{ fontSize: '16px', margin: '8px 0' }}>Phone: {formData.phone}</Text>
+      <Text style={{ fontSize: '16px', margin: '8px 0' }}>Secondary Phone: {formData.phoneSecondary}</Text>
         <Text style={{ fontSize: '16px', margin: '8px 0' }}>Email: {formData.email}</Text>
         <Text style={{ fontSize: '16px', margin: '8px 0' }}>Message: {formData.message}</Text>
 

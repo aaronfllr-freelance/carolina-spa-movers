@@ -50,6 +50,11 @@ export const Footer = () => {
                                     Contact
                                 </Link>
                             </li>
+                            <li>
+                                <Link href='/apply' className='hover:underline'>
+                                    Join our Team
+                                </Link>
+                            </li>
                         </ul>
                     </div>
 
