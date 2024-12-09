@@ -6,6 +6,7 @@ import SpaToStorageEmail from '@/components/Contact/emailTemplates/spaToStorage'
 import React from 'react';
 import ResidentToResidentEmail from '@/components/Contact/emailTemplates/residenceToResidence';
 import RemovalToDisposalEmail from '@/components/Contact/emailTemplates/removalToDisposal';
+import EmployeeApplicationEmail from '@/components/Contact/emailTemplates/employeeApplication';
 
 const resend = new Resend(process.env.VITE_RESEND_API_KEY as string);
 const fromEmail = process.env.SENDER_EMAIL as string || '';
@@ -49,6 +50,7 @@ interface EmailRequest {
     destinationSlope?: string;
     destinationObstacles?: string;
     images?: { name: string; base64: string }[]; // Base64 encoded images
+    resume?: { name: string; base64: string }[]; // Base64 encoded resume
 }
 
 export const handler: Handler = async (event) => {
@@ -90,7 +92,8 @@ export const handler: Handler = async (event) => {
             destinationPropertyTilt,
             destinationSlope,
             destinationObstacles,
-            images
+            images,
+            resume
         }: EmailRequest = JSON.parse(event.body as string);
 
         const emailData = {
@@ -146,7 +149,10 @@ export const handler: Handler = async (event) => {
             htmlEmail = render(React.createElement(ResidentToResidentEmail, { formData: emailData }));
             } else if (formType === 'removalToDisposal') {
             htmlEmail = render(React.createElement(RemovalToDisposalEmail, { formData: emailData }));
-            } else {
+            } else if (formType === 'employeeApplication') {
+            htmlEmail = render(React.createElement(EmployeeApplicationEmail, { formData: emailData }));
+            }       
+            else {
                 return {
                     statusCode: 400,
                     body: 'Invalid form type',
@@ -159,13 +165,37 @@ export const handler: Handler = async (event) => {
             encoding: 'base64',
         })) || [];
 
-        const {data, error} = await resend.emails.send({
-            from: `Carolina Spa Movers Website <CarolinaSpaMovers@resend.dev>`,
-            to: "aaronfllr.work@gmail.com",
-            subject: "Spa Needs Moving",
-            html: htmlEmail,
-            attachments,
-        });
+        // const resumeAttachment = resume && {
+        //     filename: resume.name,
+        //     content: resume.base64.split,
+        //     encoding: 'base64',
+        // }
+
+        // const {data, error} = await resend.emails.send({
+        //     from: `Carolina Spa Movers Website <CarolinaSpaMovers@resend.dev>`,
+        //     to: "aaronfllr.work@gmail.com",
+        //     subject: "",
+        //     html: htmlEmail,
+        //     attachments,
+        // });
+
+        if (formType === 'employeeApplication') {
+            var {data, error} = await resend.emails.send({
+                from: `Carolina Spa Movers Website <CarolinaSpaMovers@resend.dev>`,
+                to: "aaronfllr.work@gmail.com",
+                subject: "New Employee Application",
+                html: htmlEmail,
+                attachments,
+            });   
+        } else {
+            var {data, error} = await resend.emails.send({
+                from: `Carolina Spa Movers Website <CarolinaSpaMovers@resend.dev>`,
+                to: "aaronfllr.work@gmail.com",
+                subject: "Spa Moving Order",
+                html: htmlEmail,
+                attachments,
+            });
+        }
         
         if (error) return {
             statusCode: 400,
