@@ -7,6 +7,7 @@ interface EmailProps {
     name: string;
     email: string;
     phone: string;
+    phoneSecondary: string;
     message: string;
     currentAddress: string;
     currentCity: string;
@@ -19,8 +20,13 @@ interface EmailProps {
     steps?: string;
     access?: string;
     propertySlope?: string;
+    propertyTilt?: string;
     slope?: string;
     obstacles?: string;
+    destinationName: string;
+    destinationEmail: string;
+    destinationPhone: string;
+    destinationPhoneSecondary: string
     destinationAddress?: string;
     destinationCity?: string;
     destinationState?: string;
@@ -30,6 +36,7 @@ interface EmailProps {
     destinationSteps?: string;
     destinationAccess?: string;
     destinationPropertySlope?: string;
+    destinationPropertyTilt?: string;
     destinationSlope?: string;
     destinationObstacles?: string;
   };
@@ -45,27 +52,35 @@ const ResidentToResidentEmail: React.FC<EmailProps> = ({ formData }) => (
     </head>
     <body style={{ fontFamily: 'Arial, sans-serif', color: '#333', lineHeight: '24px' }}>
       <div style={{ padding: '20px', maxWidth: '600px', margin: '0 auto' }}>
+        
         <Heading style={{ fontSize: '24px', marginBottom: '16px' }}>Resident to Resident Move Request</Heading>
+        <Heading style={{ fontSize: '18px', margin: '16px 0' }}>Current Location Information</Heading>
+        
         <Text style={{ fontSize: '16px', margin: '8px 0' }}>Name: {formData.name}</Text>
         <Text style={{ fontSize: '16px', margin: '8px 0' }}>Email: {formData.email}</Text>
         <Text style={{ fontSize: '16px', margin: '8px 0' }}>Phone: {formData.phone}</Text>
+        <Text style={{ fontSize: '16px', margin: '8px 0' }}>Secondary Phone: {formData.phoneSecondary}</Text>
+        {formData.brand && <Text style={{ fontSize: '16px', margin: '8px 0' }}>Brand: {formData.brand}</Text>}
         <Text style={{ fontSize: '16px', margin: '8px 0' }}>Message: {formData.message}</Text>
-
-        <Heading style={{ fontSize: '18px', margin: '16px 0' }}>Current Location Information</Heading>
         <Text style={{ fontSize: '16px', margin: '8px 0' }}>
           Address: {formData.currentAddress}, {formData.currentCity}, {formData.currentState}, {formData.currentZip}
         </Text>
-        {formData.brand && <Text style={{ fontSize: '16px', margin: '8px 0' }}>Brand: {formData.brand}</Text>}
         {formData.dimensions && <Text style={{ fontSize: '16px', margin: '8px 0' }}>Dimensions: {formData.dimensions}</Text>}
         {formData.pathClearance && <Text style={{ fontSize: '16px', margin: '8px 0' }}>Path Clearance: {formData.pathClearance}</Text>}
         {formData.placementSpot && <Text style={{ fontSize: '16px', margin: '8px 0' }}>Placement Spot: {formData.placementSpot}</Text>}
         {formData.steps && <Text style={{ fontSize: '16px', margin: '8px 0' }}>Steps: {formData.steps}</Text>}
         {formData.access && <Text style={{ fontSize: '16px', margin: '8px 0' }}>Access: {formData.access}</Text>}
         {formData.propertySlope && <Text style={{ fontSize: '16px', margin: '8px 0' }}>Property Slope: {formData.propertySlope}</Text>}
+        {formData.propertyTilt && <Text style={{ fontSize: '16px', margin: '8px 0' }}>Property Tilt: {formData.propertyTilt}</Text>}
         {formData.slope && <Text style={{ fontSize: '16px', margin: '8px 0' }}>Slope: {formData.slope}</Text>}
         {formData.obstacles && <Text style={{ fontSize: '16px', margin: '8px 0' }}>Obstacles: {formData.obstacles}</Text>}
 
         <Heading style={{ fontSize: '18px', margin: '16px 0' }}>Destination Information</Heading>
+        <Text style={{ fontSize: '16px', margin: '8px 0' }}>Name: {formData.destinationName}</Text>
+        <Text style={{ fontSize: '16px', margin: '8px 0' }}>Email: {formData.destinationEmail}</Text>
+        <Text style={{ fontSize: '16px', margin: '8px 0' }}>Phone: {formData.destinationPhone}</Text>
+        <Text style={{ fontSize: '16px', margin: '8px 0' }}>Secondary Phone: {formData.destinationPhoneSecondary}</Text>
+        
         <Text style={{ fontSize: '16px', margin: '8px 0' }}>
           Address: {formData.destinationAddress}, {formData.destinationCity}, {formData.destinationState}, {formData.destinationZip}
         </Text>
@@ -83,6 +98,9 @@ const ResidentToResidentEmail: React.FC<EmailProps> = ({ formData }) => (
         )}
         {formData.destinationPropertySlope && (
           <Text style={{ fontSize: '16px', margin: '8px 0' }}>Destination Property Slope: {formData.destinationPropertySlope}</Text>
+        )}
+        {formData.destinationPropertyTilt && (
+          <Text style={{ fontSize: '16px', margin: '8px 0' }}>Destination Property Tilt: {formData.destinationPropertyTilt}</Text>
         )}
         {formData.destinationSlope && <Text style={{ fontSize: '16px', margin: '8px 0' }}>Destination Slope: {formData.destinationSlope}</Text>}
         {formData.destinationObstacles && (

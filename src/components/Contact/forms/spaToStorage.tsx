@@ -11,6 +11,7 @@ const SpaToStorage: React.FC = () => {
     const [formData, setFormData] = useState({
         name: '',
         phone: '',
+        phoneSecondary: '',
         email: '',
         message: '',
         currentAddress: '',
@@ -24,6 +25,7 @@ const SpaToStorage: React.FC = () => {
         steps: '',
         access: '',
         propertySlope: '',
+        propertyTilt: '',
         slope: '',
         obstacles: '',
         destinationAddress: '',
@@ -35,6 +37,7 @@ const SpaToStorage: React.FC = () => {
         destinationSteps: '',
         destinationAccess: '',
         destinationPropertySlope: '',
+        destinationPropertyTilt: '',
         destinationSlope: '',
         destinationObstacles: '',
         images: [] as { name: string; base64: string }[], // Base64 encoded images
@@ -42,6 +45,8 @@ const SpaToStorage: React.FC = () => {
     const [error, setError] = useState<string | null>(null);
 
     const { value: formattedPhone, onChange: handlePhoneChange } = usePhoneNumberFormatter(formData.phone);
+    const { value: formattedPhoneSecondary, onChange: handlePhoneSecondaryChange } = usePhoneNumberFormatter(formData.phoneSecondary);
+
 
     const convertToBase64 = (file: File): Promise<string> => {
         return new Promise((resolve, reject) => {
@@ -84,6 +89,14 @@ const SpaToStorage: React.FC = () => {
                 ...formData,
                 [name]: value.replace(/[^\d]/g, '') // Save unformatted phone number
             });
+        } else if (name === 'phoneSecondary') {
+            if (e.target instanceof HTMLInputElement) {
+                handlePhoneSecondaryChange(e as React.ChangeEvent<HTMLInputElement>)
+            }
+            setFormData({
+                ...formData,
+                [name]: value.replace(/[^\d]/g, '')
+            })
         } else {
             setFormData({
                 ...formData,
@@ -102,6 +115,7 @@ const SpaToStorage: React.FC = () => {
             name: formData.name,
             email: formData.email,
             phone: formattedPhone,
+            phoneSecondary: formData.phoneSecondary,
             message: formData.message,
             currentAddress: formData.currentAddress,
             currentCity: formData.currentCity,
@@ -146,12 +160,12 @@ const SpaToStorage: React.FC = () => {
 
     return (
         <form name="contact" onSubmit={notifySentForm} className="space-y-4">
-                    {/* Name and Phone Number */}
-                    <div className='flex-col'>
+          {/* Name and Phone Number */}
+          <div className='flex-col'>
                         <div className="lg:flex">
                             <div className="lg:pr-1 lg:w-1/2">
                                 <label htmlFor="name" className="block text-md font-bold text-primary-900">
-                                    Name
+                                    Current Owner's Name
                                 </label>
                                 <input
                                     type="text"
@@ -164,8 +178,28 @@ const SpaToStorage: React.FC = () => {
                                 />
                             </div>
                             <div className="lg:pl-1 lg:w-1/2">
+                                <label htmlFor="email" className="block text-md font-bold text-primary-900">
+                                Current Owner's Email
+                                </label>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    id="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    className="mt-1 rounded-md block w-full border border-primary-900 shadow-md p-2 sm:text-sm"
+                                    required
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Email Input (single column) */}
+                    <div className='flex-col'>
+                        <div className="lg:flex">
+                            <div className="lg:pr-1 lg:w-1/2">
                                 <label htmlFor="phone" className="block text-md font-bold text-primary-900">
-                                    Phone Number
+                                        Current Owner's Phone Number
                                 </label>
                                 <input
                                     type="tel"
@@ -178,23 +212,22 @@ const SpaToStorage: React.FC = () => {
                                     required
                                 />
                             </div>
+                            <div className="lg:pr-1 lg:w-1/2">
+                                <label htmlFor="phone" className="block text-md font-bold text-primary-900">
+                                        Secondary Phone Number
+                                </label>
+                                <input
+                                    type="tel"
+                                    placeholder="+1 (123) 456-7890"
+                                    name="phoneSecondary"
+                                    id="phoneSecondary"
+                                    value={formattedPhoneSecondary}
+                                    onChange={handleChange}
+                                    className="mt-1 rounded-md block w-full border border-primary-900 shadow-md p-2 sm:text-sm"
+                                    required
+                                />
+                            </div>
                         </div>
-                    </div>
-
-                    {/* Email Input (single column) */}
-                    <div>
-                        <label htmlFor="email" className="block text-md font-bold text-primary-900">
-                            Email Address
-                        </label>
-                        <input
-                            type="email"
-                            name="email"
-                            id="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            className="mt-1 rounded-md block w-full border border-primary-900 shadow-md p-2 sm:text-sm"
-                            required
-                        />
                     </div>
 
                     {/* Current Address and City (2 columns) */}

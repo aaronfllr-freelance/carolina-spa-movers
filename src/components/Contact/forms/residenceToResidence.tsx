@@ -11,6 +11,7 @@ const ResidentToResident: React.FC = () => {
     const [formData, setFormData] = useState({
         name: '',
         phone: '',
+        phoneSecondary: '',
         email: '',
         message: '',
         currentAddress: '',
@@ -24,8 +25,13 @@ const ResidentToResident: React.FC = () => {
         steps: '',
         access: '',
         propertySlope: '',
+        propertyTilt: '',
         slope: '',
         obstacles: '',
+        destinationName:'',
+        destinationEmail: '',
+        destinationPhone: '',
+        destinationPhoneSecondary: '',
         destinationAddress: '',
         destinationCity: '',
         destinationState: '',
@@ -35,6 +41,7 @@ const ResidentToResident: React.FC = () => {
         destinationSteps: '',
         destinationAccess: '',
         destinationPropertySlope: '',
+        destinationPropertyTilt: '',
         destinationSlope: '',
         destinationObstacles: '',
         images: [] as { name: string; base64: string}[], // Add images state to hold the files
@@ -42,6 +49,9 @@ const ResidentToResident: React.FC = () => {
     const [error, setError] = useState<string | null>(null);
 
     const { value: formattedPhone, onChange: handlePhoneChange } = usePhoneNumberFormatter(formData.phone);
+    const { value: formattedPhoneSecondary, onChange: handlePhoneSecondaryChange } = usePhoneNumberFormatter(formData.phoneSecondary);
+    const { value: formattedDestinationPhone, onChange: handleDestinationPhoneChange } = usePhoneNumberFormatter(formData.phoneSecondary);
+    const { value: formattedDestinationPhoneSecondary, onChange: handleDestinationPhoneSecondaryChange } = usePhoneNumberFormatter(formData.phoneSecondary);
 
     const convertToBase64 = (file: File): Promise<string> => {
         return new Promise((resolve, reject) => {
@@ -85,7 +95,34 @@ const ResidentToResident: React.FC = () => {
                 ...formData,
                 [name]: value.replace(/[^\d]/g, '') // Save unformatted phone number
             });
-        } else {
+        } else if (name === 'phoneSecondary') {
+            if (e.target instanceof HTMLInputElement) {
+                handlePhoneSecondaryChange(e as React.ChangeEvent<HTMLInputElement>)
+            }
+            setFormData({
+                ...formData,
+                [name]: value.replace(/[^\d]/g, '')
+            })
+        } 
+        else if (name === 'destinationPhone') {
+            if (e.target instanceof HTMLInputElement) {
+                handleDestinationPhoneChange(e as React.ChangeEvent<HTMLInputElement>)
+            }
+            setFormData({
+                ...formData,
+                [name]: value.replace(/[^\d]/g, '')
+            })
+        } 
+        else if (name === 'destinationPhoneSecondary') {
+            if (e.target instanceof HTMLInputElement) {
+                handleDestinationPhoneSecondaryChange(e as React.ChangeEvent<HTMLInputElement>)
+            }
+            setFormData({
+                ...formData,
+                [name]: value.replace(/[^\d]/g, '')
+            })
+        } 
+        else {
             setFormData({
                 ...formData,
                 [name]: value
@@ -103,6 +140,7 @@ const ResidentToResident: React.FC = () => {
             name: formData.name,
             email: formData.email,
             phone: formattedPhone,
+            secondaryPhone: formData.phoneSecondary,
             message: formData.message,
             currentAddress: formData.currentAddress,
             currentCity: formData.currentCity,
@@ -115,8 +153,13 @@ const ResidentToResident: React.FC = () => {
             steps: formData.steps,
             access: formData.access,  
             propertySlope: formData.propertySlope,
+            propertyTilt: formData.propertyTilt,
             slope: formData.slope,
             obstacles: formData.obstacles,
+            destinationName: formData.destinationName,
+            destinationEmail: formData.destinationEmail,
+            destinationPhone: formattedDestinationPhone,
+            destinationPhoneSecondary: formData.destinationPhoneSecondary,
             distinationAddress: formData.destinationAddress,
             destinationCity: formData.destinationCity,
             destinationState: formData.destinationState,
@@ -126,6 +169,7 @@ const ResidentToResident: React.FC = () => {
             destinationSteps: formData.destinationSteps,
             destinationAccess: formData.destinationAccess,  
             destinationPropertySlope: formData.destinationPropertySlope,
+            destinationPropertyTilt: formData.destinationPropertyTilt,
             destinationSlope: formData.destinationSlope,
             destinationObstacles: formData.destinationObstacles,
             images: formData.images,
@@ -149,11 +193,11 @@ const ResidentToResident: React.FC = () => {
         
         <form name="contact" onSubmit={notifySentForm} className="space-y-4">
                 {/* Name and Phone Number */}
-                    <div className='flex-col'>
+                <div className='flex-col'>
                         <div className="lg:flex">
                             <div className="lg:pr-1 lg:w-1/2">
                                 <label htmlFor="name" className="block text-md font-bold text-primary-900">
-                                    Name
+                                    Current Owner's Name
                                 </label>
                                 <input
                                     type="text"
@@ -166,8 +210,28 @@ const ResidentToResident: React.FC = () => {
                                 />
                             </div>
                             <div className="lg:pl-1 lg:w-1/2">
+                                <label htmlFor="email" className="block text-md font-bold text-primary-900">
+                                Current Owner's Email
+                                </label>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    id="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    className="mt-1 rounded-md block w-full border border-primary-900 shadow-md p-2 sm:text-sm"
+                                    required
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Email Input (single column) */}
+                    <div className='flex-col'>
+                        <div className="lg:flex">
+                            <div className="lg:pr-1 lg:w-1/2">
                                 <label htmlFor="phone" className="block text-md font-bold text-primary-900">
-                                    Phone Number
+                                        Current Owner's Phone Number
                                 </label>
                                 <input
                                     type="tel"
@@ -180,23 +244,22 @@ const ResidentToResident: React.FC = () => {
                                     required
                                 />
                             </div>
+                            <div className="lg:pr-1 lg:w-1/2">
+                                <label htmlFor="phone" className="block text-md font-bold text-primary-900">
+                                        Secondary Phone Number
+                                </label>
+                                <input
+                                    type="tel"
+                                    placeholder="+1 (123) 456-7890"
+                                    name="phoneSecondary"
+                                    id="phoneSecondary"
+                                    value={formattedPhoneSecondary}
+                                    onChange={handleChange}
+                                    className="mt-1 rounded-md block w-full border border-primary-900 shadow-md p-2 sm:text-sm"
+                                    required
+                                />
+                            </div>
                         </div>
-                    </div>
-
-                    {/* Email Input (single column) */}
-                    <div>
-                        <label htmlFor="email" className="block text-md font-bold text-primary-900">
-                            Email Address
-                        </label>
-                        <input
-                            type="email"
-                            name="email"
-                            id="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            className="mt-1 rounded-md block w-full border border-primary-900 shadow-md p-2 sm:text-sm"
-                            required
-                        />
                     </div>
 
                     {/* Current Address and City (2 columns) */}
@@ -477,26 +540,128 @@ const ResidentToResident: React.FC = () => {
                                         type="radio"
                                         className='m-2'
                                         name="propertySlope"
-                                        value="Descend to Location"
-                                        checked={formData.propertySlope === 'Descend to Location'}
+                                        value="Descending"
+                                        checked={formData.propertySlope === 'Descending'}
                                         onChange={handleChange}
                                     />
-                                    Descending to Spa
+                                    Descending
                                 </label>
                                 <label>
                                     <input
                                         type="radio"
                                         className='m-2'
                                         name="propertySlope"
-                                        value="Ascend to Location"
-                                        checked={formData.propertySlope === 'Ascend to Location'}
+                                        value="Ascending"
+                                        checked={formData.propertySlope === 'Ascending'}
                                         onChange={handleChange}
                                     />
-                                      Ascending to Spa
+                                      Ascending
                                 </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="propertyTilt"
+                                        value="Left Tilt"
+                                        checked={formData.propertyTilt === 'Left Tilt'}
+                                        onChange={handleChange}
+                                    />
+                                    Left Tilt 
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="propertyTilt"
+                                        value="Right Tilt"
+                                        checked={formData.propertyTilt === 'Right Tilt'}
+                                        onChange={handleChange}
+                                    />
+                                    Right Tilt
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="propertyTilt"
+                                        value="Neutral Tilt"
+                                        checked={formData.propertyTilt === 'Neutral Tilt'}
+                                        onChange={handleChange}
+                                    />
+                                      Neutral Tilt
+                                </label> 
                         </div>
                     </div>
 
+                {/* Name and Phone Number */}
+                <div className='flex-col'>
+                        <div className="lg:flex">
+                            <div className="lg:pr-1 lg:w-1/2">
+                                <label htmlFor="destinationName" className="block text-md font-bold text-primary-900">
+                                    Destination Owner's Name
+                                </label>
+                                <input
+                                    type="text"
+                                    name="destinationName"
+                                    id="destinationName"
+                                    value={formData.destinationName}
+                                    onChange={handleChange}
+                                    className="mt-1 rounded-md block w-full border border-gray-900 shadow-md p-2 sm:text-sm"
+                                    required
+                                />
+                            </div>
+                            <div className="lg:pl-1 lg:w-1/2">
+                                <label htmlFor="destinationEmail" className="block text-md font-bold text-primary-900">
+                                Destination Owner's Email
+                                </label>
+                                <input
+                                    type="email"
+                                    name="destinationEmail"
+                                    id="destinationEmail"
+                                    value={formData.destinationEmail}
+                                    onChange={handleChange}
+                                    className="mt-1 rounded-md block w-full border border-primary-900 shadow-md p-2 sm:text-sm"
+                                    required
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Email Input (single column) */}
+                    <div className='flex-col'>
+                        <div className="lg:flex">
+                            <div className="lg:pr-1 lg:w-1/2">
+                                <label htmlFor="destinationPhone" className="block text-md font-bold text-primary-900">
+                                        Destination Phone Number
+                                </label>
+                                <input
+                                    type="tel"
+                                    placeholder="+1 (123) 456-7890"
+                                    name="destinationPhone"
+                                    id="destinationPhone"
+                                    value={formattedDestinationPhone}
+                                    onChange={handleChange}
+                                    className="mt-1 rounded-md block w-full border border-primary-900 shadow-md p-2 sm:text-sm"
+                                    required
+                                />
+                            </div>
+                            <div className="lg:pr-1 lg:w-1/2">
+                                <label htmlFor="destinationPhone" className="block text-md font-bold text-primary-900">
+                                        Secondary Phone Number
+                                </label>
+                                <input
+                                    type="tel"
+                                    placeholder="+1 (123) 456-7890"
+                                    name="destinationPhoneSecondary"
+                                    id="destinationPhoneSecondary"
+                                    value={formattedDestinationPhoneSecondary}
+                                    onChange={handleChange}
+                                    className="mt-1 rounded-md block w-full border border-primary-900 shadow-md p-2 sm:text-sm"
+                                    required
+                                />
+                            </div>
+                        </div>
+                    </div>
                     {/* Destination Address and City (2 columns) */}
                     <div className='flex-col font-bold text-md'>
                         <div className="lg:flex">
@@ -754,7 +919,7 @@ const ResidentToResident: React.FC = () => {
                     </div>
 
                     <div className='block text-md font-bold text-primary-900'>
-                        <label className='lg:pr-1 lg:w-1/2'>Path of Removal</label>
+                        <label className='lg:pr-1 lg:w-1/2'>Path of Placement</label>
                             <div className='grid lg:grid-cols-2 text-md font-medium gap-4 mt-2 grid-cols-1'>
                                 <label>
                                     <input
@@ -772,23 +937,56 @@ const ResidentToResident: React.FC = () => {
                                         type="radio"
                                         className='m-2'
                                         name="destinationPropertySlope"
-                                        value="Descend to Location"
-                                        checked={formData.destinationPropertySlope === 'Descend to Location'}
+                                        value="Descending"
+                                        checked={formData.destinationPropertySlope === 'Descending'}
                                         onChange={handleChange}
                                     />
-                                    Descending to Spa
+                                    Descending
                                 </label>
                                 <label>
                                     <input
                                         type="radio"
                                         className='m-2'
                                         name="destinationPropertySlope"
-                                        value="Ascend to Location"
-                                        checked={formData.destinationPropertySlope === 'Ascend to Location'}
+                                        value="Ascending"
+                                        checked={formData.destinationPropertySlope === 'Ascending'}
                                         onChange={handleChange}
                                     />
-                                      Ascending to Spa
+                                      Ascending
                                 </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="destinationPropertyTilt"
+                                        value="Left Tilt"
+                                        checked={formData.destinationPropertyTilt === 'Left Tilt'}
+                                        onChange={handleChange}
+                                    />
+                                    Left Tilt
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="destinationPropertyTilt"
+                                        value="Right Tilt"
+                                        checked={formData.destinationPropertyTilt === 'Right Tilt'}
+                                        onChange={handleChange}
+                                    />
+                                      Right Tilt
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        className='m-2'
+                                        name="destinationPropertyTilt"
+                                        value="Neutral Tilt"
+                                        checked={formData.destinationPropertyTilt === 'Neutral Tilt'}
+                                        onChange={handleChange}
+                                    />
+                                      Neutral Tilt
+                                </label> 
                         </div>
                     </div>
 
